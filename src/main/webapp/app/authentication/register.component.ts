@@ -9,7 +9,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  registered : boolean = false;
   registerForm = this.fb.group({
     login: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
@@ -35,11 +35,10 @@ export class RegisterComponent implements OnInit {
     user.email = this.registerForm.get(['email']).value;
 
     this.authenticationService.register(user, user.password).subscribe(
-      (response) => {
-        console.log(response);
-        //this.success = true;
+      response => {
+        this.registered = true;
       },
-      (response) => {
+      response => {
         console.log("Error : " + response);
         //this.success = true;
       }

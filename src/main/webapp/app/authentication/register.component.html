@@ -1,5 +1,5 @@
 <h3>Register</h3>
-<form class="container-fluid" role="form" (ngSubmit)="register()" [formGroup]="registerForm">
+<form class="container-fluid" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!registered">
 	<div class="row">
 		<mat-form-field class="col-12">
 			<input matInput placeholder="Login" name="login" id="login" formControlName="login">
@@ -32,3 +32,7 @@
 		</div>
 	</div>
 </form>
+<div *ngIf="registered" style="text-align:center">
+	<p>Le compte a été créé avec succès. Un email d'activation a été envoyé à l'adresse soumise.</p>
+	<p>Si celui-ci n'a pas été reçu, cliquer ici pour le renvoyer.</p>
+</div>
