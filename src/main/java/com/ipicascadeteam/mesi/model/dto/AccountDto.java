@@ -13,7 +13,7 @@ public class AccountDto {
     @NotBlank
     @Pattern(regexp = LOGIN_REGEX)
     @Size(min = 1, max = 50)
-    private String login;
+    private String userName;
     
     @NotBlank
     private String password;
@@ -28,12 +28,16 @@ public class AccountDto {
     @Size(min = 5, max = 254)
     private String email;
 
-    public String getLogin() {
-        return login;
+    private String token;
+    
+    private boolean rememberMe;
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setLogin(String userName) {
+        this.userName = userName.toLowerCase();
     }
 
     public String getPassword() {
@@ -68,10 +72,26 @@ public class AccountDto {
         this.email = email;
     }
 
-    @Override
+    public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
+
+	@Override
     public String toString() {
         return "UserDTO{" +
-            "login='" + login + '\'' +
+            "login='" + userName + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +

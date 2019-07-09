@@ -25,8 +25,8 @@ public class User implements Serializable {
     @NotNull
     @Pattern(regexp = LOGIN_REGEX)
     @Size(min = 1, max = 50)
-    @Column(length = 50, unique = true, nullable = false)
-    private String login;
+    @Column(name = "user_name", length = 50, unique = true, nullable = false)
+    private String userName;
 
     @JsonIgnore
     @NotNull
@@ -67,12 +67,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLogin(String login) {
-        this.login = login.toLowerCase();
+    public void setUserName(String userName) {
+        this.userName = userName.toLowerCase();
     }
 
     public String getPassword() {
@@ -107,7 +107,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public boolean getActivated() {
+    public boolean isActivated() {
         return activated;
     }
 
@@ -145,7 +145,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-            "login='" + login + '\'' +
+            "login='" + userName + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +

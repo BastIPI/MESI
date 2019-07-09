@@ -2,7 +2,14 @@ package com.ipicascadeteam.mesi.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,34 +18,64 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ipicascadeteam.mesi.model.User;
 import com.ipicascadeteam.mesi.model.dto.AccountDto;
-import com.ipicascadeteam.mesi.model.dto.UserDto;
+import com.ipicascadeteam.mesi.security.TokenProvider;
 import com.ipicascadeteam.mesi.service.AuthenticationService;
 import com.ipicascadeteam.mesi.service.EmailService;
+import com.ipicascadeteam.mesi.service.UserService;
 
 @RestController
 @RequestMapping("/api")
 public class AuthenticationController {
 
+	@Autowired
+    private AuthenticationManagerBuilder authenticationManagerBuilder;
+    
     private final AuthenticationService authenticationService;
     private final EmailService emailService;
+    private final UserService userService;
     
-    public AuthenticationController(AuthenticationService authenticationService, EmailService emailService) {
+    public AuthenticationController(AuthenticationService authenticationService, EmailService emailService, UserService userService) {
         this.authenticationService = authenticationService;        
-        this.emailService = emailService;        
+        this.emailService = emailService;            
+        this.userService = userService;    
     }
 
     /**
      * {@code POST  /register} : register the user.
      *
-     * @param managedUserVM the managed user View Model.
-     * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
-     * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
-     * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
+     * @param accountDto : an object containing data from UI to create a user.
+     * 
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody AccountDto accountDto) {
+    public void register(@Valid @RequestBody AccountDto accountDto) {
+    	/*if (userService.findByLogin(accountDto.getLogin()) != null) {
+    		
+    	}*/
         User user = authenticationService.register(accountDto);
         //emailService.sendEmail(user.getEmail(), "Activation compte MESI", "Clé" + user.getActivationKey(), false, false);
+    }
+
+    /**
+     * {@code POST  /login} : login
+     *
+     * @param accountDto : an object containing data from UI to login.
+     * 
+     */
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<AccountDto> login(@Valid @RequestBody AccountDto accountDto) {
+    	System.out.println("Request to login : " + accountDto.getUserName());
+        UsernamePasswordAuthenticationToken authenticationToken =
+            new UsernamePasswordAuthenticationToken(accountDto.getUserName(), accountDto.getPassword());
+
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        //String jwt = tokenProvider.createToken(authentication, accountDto.isRememberMe());
+        String jwt = TokenProvider.createJWT(authentication.getName(), "issuer", "subject", 84000000);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Authorization", "Bearer " + jwt);
+        accountDto.setToken(jwt);
+        return new ResponseEntity<>(accountDto, httpHeaders, HttpStatus.OK);
     }
 }

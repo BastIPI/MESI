@@ -1,7 +1,11 @@
 package com.ipicascadeteam.mesi.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -14,10 +18,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 import org.springframework.web.filter.CorsFilter;
 
+import com.ipicascadeteam.mesi.security.CustomAuthenticationProvider;
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+
+    @Autowired
+    private CustomAuthenticationProvider authProvider;
+  
     private final CorsFilter corsFilter;
 
     public SecurityConfig(CorsFilter corsFilter) {
@@ -28,7 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth.authenticationProvider(new CustomAuthenticationProvider());
+    }
+    
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
@@ -64,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
-            .antMatchers("/api/authenticate").permitAll()
+            .antMatchers("/api/login").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()

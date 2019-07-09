@@ -21,17 +21,15 @@ import com.ipicascadeteam.mesi.utils.RandomUtils;
 @Transactional
 public class AuthenticationService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    public AuthenticationService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+    private UserRepository userRepository;
     
 	public User register(@Valid AccountDto accountDto) {
 		User user = new User();
-		user.setLogin(accountDto.getLogin());
+		user.setUserName(accountDto.getUserName());
 		user.setFirstName(accountDto.getFirstName());
 		user.setLastName(accountDto.getLastName());
 		user.setEmail(accountDto.getEmail());

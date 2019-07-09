@@ -17,7 +17,7 @@ public class UserDto {
     @NotBlank
     @Pattern(regexp = LOGIN_REGEX)
     @Size(min = 1, max = 50)
-    private String login;
+    private String userName;
 
     @Size(max = 50)
     private String firstName;
@@ -39,11 +39,11 @@ public class UserDto {
 
     public UserDto(User user) {
         this.id = user.getId();
-        this.login = user.getLogin();
+        this.userName = user.getUserName();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
-        this.activated = user.getActivated();
+        this.activated = user.isActivated();
         this.createdDate = user.getCreatedDate();
     }
 
@@ -55,12 +55,12 @@ public class UserDto {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {
@@ -107,7 +107,7 @@ public class UserDto {
     @Override
     public String toString() {
         return "UserDTO{" +
-            "login='" + login + '\'' +
+            "login='" + userName + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
