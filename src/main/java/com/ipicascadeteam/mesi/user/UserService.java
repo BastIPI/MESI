@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,11 +17,8 @@ import com.ipicascadeteam.mesi.user.UserRepository;
 @Transactional
 public class UserService {
 
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	@Autowired
+    private UserRepository userRepository;
     
     @Transactional(readOnly = true)
     public Page<UserDto> getAllUsers(Pageable pageable) {

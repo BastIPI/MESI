@@ -1,5 +1,6 @@
 package com.ipicascadeteam.mesi.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,11 +16,8 @@ import java.util.*;
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+	@Autowired
+    private UserService userService;
 
     /**
      * {@code GET /users} : get all users.

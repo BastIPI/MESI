@@ -23,7 +23,6 @@ import com.ipicascadeteam.mesi.authentication.dto.AccountDto;
 import com.ipicascadeteam.mesi.authentication.dto.LoginDto;
 import com.ipicascadeteam.mesi.security.TokenProvider;
 import com.ipicascadeteam.mesi.authentication.AuthenticationService;
-import com.ipicascadeteam.mesi.utils.EmailService;
 import com.ipicascadeteam.mesi.user.UserService;
 
 @RestController
@@ -33,18 +32,15 @@ public class AuthenticationController {
 	@Autowired
     private AuthenticationManagerBuilder authenticationManagerBuilder;
     
-    private final AuthenticationService authenticationService;
-    private final EmailService emailService;
-    private final UserService userService;
-    private final UserMapper userMapper;
+	@Autowired
+    private AuthenticationService authenticationService;
+	
+	@Autowired
+    private UserService userService;
+	
+	@Autowired
+    private UserMapper userMapper;
     
-    public AuthenticationController(AuthenticationService authenticationService, EmailService emailService, UserService userService, UserMapper userMapper) {
-        this.authenticationService = authenticationService;        
-        this.emailService = emailService;            
-        this.userService = userService;
-        this.userMapper = userMapper;
-    }
-
     /**
      * {@code POST  /register} : register the user.
      *
