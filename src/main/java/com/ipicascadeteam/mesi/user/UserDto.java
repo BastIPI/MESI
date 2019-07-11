@@ -1,6 +1,6 @@
-package com.ipicascadeteam.mesi.model.dto;
+package com.ipicascadeteam.mesi.user;
 
-import com.ipicascadeteam.mesi.model.User;
+import com.ipicascadeteam.mesi.user.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

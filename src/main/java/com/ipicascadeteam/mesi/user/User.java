@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.model;
+package com.ipicascadeteam.mesi.user;
 
 import java.io.Serializable;
 import javax.persistence.*;

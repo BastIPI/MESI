@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.service;
+package com.ipicascadeteam.mesi.utils;
 
 import java.nio.charset.StandardCharsets;
 import javax.mail.internet.MimeMessage;

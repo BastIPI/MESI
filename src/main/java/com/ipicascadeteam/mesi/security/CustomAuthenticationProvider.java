@@ -1,7 +1,6 @@
 package com.ipicascadeteam.mesi.security;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -13,8 +12,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ipicascadeteam.mesi.model.User;
-import com.ipicascadeteam.mesi.repository.UserRepository;
+import com.ipicascadeteam.mesi.user.User;
+import com.ipicascadeteam.mesi.user.UserRepository;
 
 @Service
 public class CustomAuthenticationProvider implements AuthenticationProvider {

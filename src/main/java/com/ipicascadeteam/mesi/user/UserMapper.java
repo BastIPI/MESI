@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.service.mapper;
+package com.ipicascadeteam.mesi.user;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.ipicascadeteam.mesi.model.User;
-import com.ipicascadeteam.mesi.model.dto.UserDto;
+import com.ipicascadeteam.mesi.user.User;
+import com.ipicascadeteam.mesi.user.UserDto;
 
 @Service
 public class UserMapper {

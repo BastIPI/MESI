@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.controller;
+package com.ipicascadeteam.mesi.authentication;
 
 import javax.validation.Valid;
 
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ipicascadeteam.mesi.model.User;
-import com.ipicascadeteam.mesi.model.dto.AccountDto;
+import com.ipicascadeteam.mesi.user.User;
+import com.ipicascadeteam.mesi.account.AccountDto;
 import com.ipicascadeteam.mesi.security.TokenProvider;
-import com.ipicascadeteam.mesi.service.AuthenticationService;
-import com.ipicascadeteam.mesi.service.EmailService;
-import com.ipicascadeteam.mesi.service.UserService;
+import com.ipicascadeteam.mesi.authentication.AuthenticationService;
+import com.ipicascadeteam.mesi.utils.EmailService;
+import com.ipicascadeteam.mesi.user.UserService;
 
 @RestController
 @RequestMapping("/api")

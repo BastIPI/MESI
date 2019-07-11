@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.service;
+package com.ipicascadeteam.mesi.user;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,9 +8,9 @@ import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.ipicascadeteam.mesi.model.User;
-import com.ipicascadeteam.mesi.model.dto.UserDto;
-import com.ipicascadeteam.mesi.repository.UserRepository;
+import com.ipicascadeteam.mesi.user.User;
+import com.ipicascadeteam.mesi.user.UserDto;
+import com.ipicascadeteam.mesi.user.UserRepository;
 
 @Service
 @Transactional

@@ -1,6 +1,6 @@
-package com.ipicascadeteam.mesi.repository;
+package com.ipicascadeteam.mesi.user;
 
-import com.ipicascadeteam.mesi.model.User;
+import com.ipicascadeteam.mesi.user.User;
 
 import org.springframework.data.domain.Page;
 

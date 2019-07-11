@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.controller;
+package com.ipicascadeteam.mesi.user;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.ipicascadeteam.mesi.model.dto.UserDto;
-import com.ipicascadeteam.mesi.service.UserService;
+import com.ipicascadeteam.mesi.user.UserDto;
+import com.ipicascadeteam.mesi.user.UserService;
 
 import java.util.*;
 
