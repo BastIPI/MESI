@@ -9,4 +9,5 @@ export class User {
     token?: string;
     createdDate: Date;
     rememberMe?: boolean;
+    authorities?: any[];
 }

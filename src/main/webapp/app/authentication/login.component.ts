@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 })
 export class LoginComponent implements OnInit {
 
+  loggedUser: User;
   registered : boolean = false;
   loginForm = this.fb.group({
     userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
@@ -23,6 +25,12 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.loggedUser = this.authenticationService.currentUserValue;
+    if (this.loggedUser) {
+        // Si on est connecté retour à l'accueil
+        // (ne devrait jamais arriver)
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
+    }
   }
 
   login() {

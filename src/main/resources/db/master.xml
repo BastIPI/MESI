@@ -15,6 +15,13 @@
 
     <include file="db/changelog/20190705150000_create_table_user.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20190711103000_create_table_authority_and_user_authority.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/20190711140000_create_table_level and comment.xml" relativeToChangelogFile="false"/>
+	
+	
+	
+	
+	
+	
     <include file="db/changelog/20190711103000_import_base_data.xml" relativeToChangelogFile="false"/>
 	
 	

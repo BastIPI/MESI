@@ -15,6 +15,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { HomeComponent } from './home/home.component';
+import { LevelComponent } from './level/level.component';
+import { CommentComponent } from './comment/comment.component';
 
 const matModules = [
 	MatFormFieldModule,
@@ -27,7 +29,9 @@ const matModules = [
     AppComponent,
 	  LoginComponent,
 	  RegisterComponent,
-	  HomeComponent
+	  HomeComponent,
+	  LevelComponent,
+	  CommentComponent
   ],
   imports: [
     BrowserModule,

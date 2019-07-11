@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user/user.model';
 import { AuthenticationService } from '../authentication/authentication.service';
 
@@ -10,6 +11,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 })
 export class RegisterComponent implements OnInit {
   registered : boolean = false;
+  loggedUser: User;
   registerForm = this.fb.group({
     userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
@@ -21,9 +23,17 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    this.loggedUser = this.authenticationService.currentUserValue;
+    if (this.loggedUser) {
+        // Si on est connecté retour à l'accueil
+        // (ne devrait jamais arriver)
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
+    }
   }
 
   register() {
@@ -37,6 +47,7 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.register(user).subscribe(
       response => {
         this.registered = true;
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
       },
       response => {
         console.log("Error : " + response);
