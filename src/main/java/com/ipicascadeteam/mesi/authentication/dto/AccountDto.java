@@ -1,4 +1,4 @@
-package com.ipicascadeteam.mesi.account;
+package com.ipicascadeteam.mesi.authentication.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +16,7 @@ public class AccountDto {
     private String userName;
     
     @NotBlank
+    @Size(min = 4, max = 100)
     private String password;
 
     @Size(max = 50)
@@ -27,10 +28,6 @@ public class AccountDto {
     @Email
     @Size(min = 5, max = 254)
     private String email;
-
-    private String token;
-    
-    private boolean rememberMe;
 
     public String getUserName() {
         return userName;
@@ -71,22 +68,6 @@ public class AccountDto {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public boolean isRememberMe() {
-		return rememberMe;
-	}
-
-	public void setRememberMe(boolean rememberMe) {
-		this.rememberMe = rememberMe;
-	}
 
 	@Override
     public String toString() {

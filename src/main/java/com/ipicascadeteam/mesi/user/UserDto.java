@@ -1,5 +1,6 @@
 package com.ipicascadeteam.mesi.user;
 
+import com.ipicascadeteam.mesi.authority.Authority;
 import com.ipicascadeteam.mesi.user.User;
 
 import javax.validation.constraints.Email;
@@ -7,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UserDto {
 
@@ -33,6 +36,10 @@ public class UserDto {
 
     private Instant createdDate;
 
+    private String token;
+
+    private Set<String> authorities;
+    
     public UserDto() {
         // Empty constructor needed for Jackson.
     }
@@ -45,6 +52,9 @@ public class UserDto {
         this.email = user.getEmail();
         this.activated = user.isActivated();
         this.createdDate = user.getCreatedDate();
+        this.authorities = user.getAuthorities().stream()
+                .map(Authority::getName)
+                .collect(Collectors.toSet());
     }
 
     public Long getId() {
@@ -103,8 +113,23 @@ public class UserDto {
         this.createdDate = createdDate;
     }
 
+    public String getToken() {
+		return token;
+	}
 
-    @Override
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+    public Set<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<String> authorities) {
+        this.authorities = authorities;
+    }
+    
+	@Override
     public String toString() {
         return "UserDTO{" +
             "login='" + userName + '\'' +
@@ -113,6 +138,7 @@ public class UserDto {
             ", email='" + email + '\'' +
             ", activated=" + activated +
             ", createdDate=" + createdDate +
+            ", authorities=" + authorities +
             "}";
     }
 }

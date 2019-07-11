@@ -10,7 +10,7 @@ import java.time.Instant;
 import javax.validation.Valid;
 
 import com.ipicascadeteam.mesi.user.User;
-import com.ipicascadeteam.mesi.account.AccountDto;
+import com.ipicascadeteam.mesi.authentication.dto.AccountDto;
 import com.ipicascadeteam.mesi.user.UserRepository;
 import com.ipicascadeteam.mesi.utils.RandomUtils;
 

@@ -14,6 +14,7 @@ import { RegisterComponent } from './authentication/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { HomeComponent } from './home/home.component';
 
 const matModules = [
 	MatFormFieldModule,
@@ -25,7 +26,8 @@ const matModules = [
   declarations: [
     AppComponent,
 	  LoginComponent,
-	  RegisterComponent
+	  RegisterComponent,
+	  HomeComponent
   ],
   imports: [
     BrowserModule,

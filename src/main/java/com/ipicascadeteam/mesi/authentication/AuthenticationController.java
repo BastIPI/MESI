@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipicascadeteam.mesi.user.User;
-import com.ipicascadeteam.mesi.account.AccountDto;
+import com.ipicascadeteam.mesi.user.UserDto;
+import com.ipicascadeteam.mesi.user.UserMapper;
+import com.ipicascadeteam.mesi.authentication.dto.AccountDto;
+import com.ipicascadeteam.mesi.authentication.dto.LoginDto;
 import com.ipicascadeteam.mesi.security.TokenProvider;
 import com.ipicascadeteam.mesi.authentication.AuthenticationService;
 import com.ipicascadeteam.mesi.utils.EmailService;
@@ -33,11 +36,13 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final EmailService emailService;
     private final UserService userService;
+    private final UserMapper userMapper;
     
-    public AuthenticationController(AuthenticationService authenticationService, EmailService emailService, UserService userService) {
+    public AuthenticationController(AuthenticationService authenticationService, EmailService emailService, UserService userService, UserMapper userMapper) {
         this.authenticationService = authenticationService;        
         this.emailService = emailService;            
-        this.userService = userService;    
+        this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     /**
@@ -64,18 +69,23 @@ public class AuthenticationController {
      */
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<AccountDto> login(@Valid @RequestBody AccountDto accountDto) {
-    	System.out.println("Request to login : " + accountDto.getUserName());
+    public ResponseEntity<UserDto> login(@Valid @RequestBody LoginDto loginDto) {
+    	System.out.println("Request to login : " + loginDto.getUserName());
+    	
+    	// Création du token et authentification
         UsernamePasswordAuthenticationToken authenticationToken =
-            new UsernamePasswordAuthenticationToken(accountDto.getUserName(), accountDto.getPassword());
-
+            new UsernamePasswordAuthenticationToken(loginDto.getUserName(), loginDto.getPassword());
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        //String jwt = tokenProvider.createToken(authentication, accountDto.isRememberMe());
+        
+        // Création du jwt et ajout à la réponse
         String jwt = TokenProvider.createJWT(authentication.getName(), "issuer", "subject", 84000000);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Bearer " + jwt);
-        accountDto.setToken(jwt);
-        return new ResponseEntity<>(accountDto, httpHeaders, HttpStatus.OK);
+        
+        // Récupération de l'utilisateur
+        UserDto user = userMapper.userToUserDto(userService.findByUserName(loginDto.getUserName()));
+        user.setToken(jwt);
+        return new ResponseEntity<>(user, httpHeaders, HttpStatus.OK);
     }
 }

@@ -31,7 +31,7 @@ export class AuthenticationService {
     }
     
     login(userName: string, password: string) {
-        return this.http.post<any>('http://localhost:8080/api/login', { userName : userName, firstName : "", lastName : "", email : "okokok@okok.com", password : password })
+        return this.http.post<any>('http://localhost:8080/api/login', { userName : userName, password : password })
             .pipe(map(user => {
                 console.log(user);
                 // login successful if there's a jwt token in the response
@@ -44,4 +44,6 @@ export class AuthenticationService {
                 return user;
             }));
     }
+
+
 }
