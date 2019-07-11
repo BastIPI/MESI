@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
-
 @Entity
 @Table(name = "authority")
 public class Authority implements Serializable {

@@ -1,0 +1,19 @@
+package com.ipicascadeteam.mesi.comment;
+
+import com.ipicascadeteam.mesi.comment.Comment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+
+	Optional<Comment> findById(Long id);
+
+    Page<Comment> findAll(Pageable pageable);
+
+}
+
