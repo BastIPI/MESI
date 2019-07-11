@@ -1,14 +1,21 @@
 package com.ipicascadeteam.mesi.security;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String name = authentication.getName();
         Object credentials = authentication.getCredentials();
         
-        // Si le mot de passe est bien une string on la cast
+        // Si le mot de passe est bien une string on le cast
         if (!(credentials instanceof String)) {
             return null;
         }
@@ -50,9 +57,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("1000");
         }
+
+        // On récupère les authorities
+        List<GrantedAuthority> listAuthority = 
+        		user.getAuthorities()
+        			.stream()
+        			.map(a -> new SimpleGrantedAuthority(a.getName()))
+        			.collect(Collectors.toList());
         
         // Si tout est ok, on renvoie le token
-        return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken(name, password, listAuthority);
 	}
 
 	@Override

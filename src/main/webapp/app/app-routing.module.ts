@@ -3,10 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { 
+      path: 'home',
+      component: HomeComponent,
+      data: {
+        authorities: ['ROLE_ADMIN']
+      },
+      canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];

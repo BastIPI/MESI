@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication/authentication.service';
 
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(userName, password).subscribe(
       response => {
         this.registered = true;
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
       },
       response => {
         console.log("Error : " + response);
