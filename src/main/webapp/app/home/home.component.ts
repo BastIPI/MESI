@@ -12,12 +12,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService) { }
 
-  ngOnInit() {
-    if (this.authenticationService.currentUserValue.token != null) {
-      this.loggedUser = this.authenticationService.currentUserValue;
-    } else {
-      
-    }
-  }
+  ngOnInit() {}
 
 }

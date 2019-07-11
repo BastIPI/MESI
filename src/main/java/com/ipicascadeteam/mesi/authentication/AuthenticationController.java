@@ -75,7 +75,7 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         
         // Création du jwt et ajout à la réponse
-        String jwt = TokenProvider.createJWT(authentication.getName(), "issuer", "subject", 84000000);
+        String jwt = TokenProvider.createToken(authentication.getName(), "issuer", "subject", 84000000);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Bearer " + jwt);
         

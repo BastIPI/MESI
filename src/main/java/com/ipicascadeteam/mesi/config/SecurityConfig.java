@@ -1,5 +1,6 @@
 package com.ipicascadeteam.mesi.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,12 +17,17 @@ import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWrite
 import org.springframework.web.filter.CorsFilter;
 
 import com.ipicascadeteam.mesi.security.CustomAuthenticationProvider;
+import com.ipicascadeteam.mesi.security.TokenFilter;
+import com.ipicascadeteam.mesi.security.TokenProvider;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-  
+
     private final CorsFilter corsFilter;
+
+	@Autowired
+    private TokenProvider tokenProvider;
 
     public SecurityConfig(CorsFilter corsFilter) {
         this.corsFilter = corsFilter;
@@ -48,14 +54,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/swagger-ui/index.html")
             .antMatchers("/test/**");
     }
-
+    
     @Override
     public void configure(HttpSecurity http) throws Exception {
+
+        TokenFilter tokenFilter = new TokenFilter(tokenProvider);
         // @formatter:off
         http
             .csrf()
             .disable()
             .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
         .and()
             .headers()
@@ -75,12 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/login").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
-            .antMatchers("/api/account/reset-password/init").permitAll()
-            .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/**").authenticated()
-            .antMatchers("/management/health").permitAll()
-            .antMatchers("/management/info").permitAll()
-            .antMatchers("/management/prometheus").permitAll()
             //.antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
         .and()
             .httpBasic();

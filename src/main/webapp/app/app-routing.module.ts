@@ -5,6 +5,7 @@ import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { LevelComponent } from './level/level.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,13 @@ const routes: Routes = [
       component: HomeComponent,
       data: {
         authorities: ['ROLE_ADMIN']
+      },
+      canActivate: [AuthGuard] },
+  { 
+      path: 'levels',
+      component: LevelComponent,
+      data: {
+        authorities: ['ROLE_USER']
       },
       canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
