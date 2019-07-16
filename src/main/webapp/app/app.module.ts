@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { LevelComponent } from './level/level.component';
 import { CommentComponent } from './comment/comment.component';
+import { CategoryComponent } from './category/category.component';
 
 const matModules = [
 	MatFormFieldModule,
@@ -31,7 +32,8 @@ const matModules = [
 	  RegisterComponent,
 	  HomeComponent,
 	  LevelComponent,
-	  CommentComponent
+	  CommentComponent,
+	  CategoryComponent
   ],
   imports: [
     BrowserModule,
