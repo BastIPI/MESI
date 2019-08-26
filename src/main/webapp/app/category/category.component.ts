@@ -9,7 +9,7 @@ import {Category} from "./category.model";
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  categorys: Category[];
+  categories: Category[];
 
   constructor(private categoryService: CategoryService) { }
 
@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   }
 
   private onSuccess(data, headers) {
-    this.categorys = data;
+    this.categories = data;
   }
 
   private onError(error) {
