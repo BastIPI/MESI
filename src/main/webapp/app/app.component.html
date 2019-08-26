@@ -1,9 +1,4 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-<h1>
-	Welcome to {{ title }}!
-</h1>
-
-<a routerLink="/levels">Niveaux</a><br />
-<a routerLink="/login">Connexion</a> / <a routerLink="/register">Inscription</a> / <a (click)="logout()">Logout</a>
+<a routerLink="/login" (click)="logout()">Logout</a>
 <router-outlet></router-outlet>

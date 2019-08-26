@@ -1,21 +1,33 @@
-<h3>Login</h3>
-<form class="container-fluid" role="form" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
-	<div class="row">
-		<mat-form-field class="col-12">
-			<input matInput placeholder="Username" name="userName" id="userName" formControlName="userName">
-		</mat-form-field>
-	</div>
-	<div class="row">
-		<mat-form-field class="col-12">
-			<input type="password" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password">
-		</mat-form-field>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<button type="submit" mat-stroked-button color="primary">Connexion</button>
-		</div>
-	</div>
-</form>
-<div *ngIf="registered" style="text-align:center">
-	<p>Connexion réussie</p>
+<div class="container-fluid">
+	<mat-card class="row" style="margin: auto;">
+		<mat-card-header>
+			<h3 style="margin: auto;">Bonjour !</h3>
+		</mat-card-header>			
+		<mat-card-content>
+			<form class="container-fluid" role="form" style="border: 0px;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
+				<div class="row">
+					<mat-form-field>
+						<input matInput placeholder="Username" name="userName" id="userName" formControlName="userName" required>
+					</mat-form-field>
+				</div>
+				<div class="row">
+					<mat-form-field>
+						<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
+						<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
+							<mat-icon class="material-icons" *ngIf="hide" aria-hidden="false" aria-label="Rendre Visible">Voir</mat-icon>
+							<mat-icon class="material-icons" *ngIf="!hide" aria-hidden="false" aria-label="Rendre Invisible">Cacher</mat-icon>
+						</button>
+					</mat-form-field>
+				</div>
+		
+		<mat-card-actions>
+			<a mat-button type="submit" mat-raised-button color="primary">Connexion</a>
+			<button mat-raised-button color="warning">
+				<a mat-button routerLink="/register">Inscription</a>
+			</button>
+		</mat-card-actions>
+	
+	</form>
+</mat-card-content>
+</mat-card>
 </div>

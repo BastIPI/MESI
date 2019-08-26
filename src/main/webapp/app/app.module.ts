@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -22,7 +22,9 @@ import { CategoryComponent } from './category/category.component';
 const matModules = [
 	MatFormFieldModule,
 	MatInputModule,
-	MatButtonModule
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule
 ];
 
 @NgModule({
@@ -33,7 +35,7 @@ const matModules = [
 	  HomeComponent,
 	  LevelComponent,
 	  CommentComponent,
-	  CategoryComponent
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ const matModules = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-	  BrowserAnimationsModule,
+    BrowserAnimationsModule,
 	  ...matModules
   ],
   exports: [...matModules],

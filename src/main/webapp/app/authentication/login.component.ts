@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   loggedUser: User;
   registered : boolean = false;
+  hide : true;
   loginForm = this.fb.group({
     userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
       response => {
         this.registered = true;
         this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
+        console.log("Connexion réussie !");
       },
       response => {
         console.log("Error : " + response);
