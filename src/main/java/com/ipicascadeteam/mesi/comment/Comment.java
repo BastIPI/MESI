@@ -43,12 +43,21 @@ public class Comment implements Serializable {
     private boolean active;
 
     @NotNull
-    @Column(name = "created_date")
-    private Instant createdDate;
+    @Column(name = "date_created")
+    private Instant dateCreated;
 
-    @Column(name = "edited_date")
-    private Instant editedDate = null;
+    @Column(name = "date_edited")
+    private Instant dateEdited = null;
     
+    
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+            "id='" + id + '\'' +
+            "}";
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,21 +66,59 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Comment)) {
-            return false;
-        }
-        return id != null && id.equals(((Comment) o).id);
+    public User getUser() {
+        return user;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-            "id='" + id + '\'' +
-            "}";
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Comment getParent() {
+        return parent;
+    }
+
+    public void setParent(Comment parent) {
+        this.parent = parent;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Instant getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Instant dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Instant getDateEdited() {
+        return dateEdited;
+    }
+
+    public void setDateEdited(Instant dateEdited) {
+        this.dateEdited = dateEdited;
     }
 }

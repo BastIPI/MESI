@@ -28,5 +28,10 @@ public class LevelController {
         // HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
     }
+
+    @GetMapping("/level/{id}")
+    Level getLevel(@PathVariable Long id) {
+        return levelService.findById(id);
+    }
     
 }

@@ -12,8 +12,27 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="title" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_edited" type="timestamp"/>
+            <column name="active" type="boolean" valueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-		
+
         <createTable tableName="comment">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -21,9 +40,7 @@
             <column name="user_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="level_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
+            <column name="level_id" type="bigint" />
             <column name="message" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
@@ -31,10 +48,10 @@
             <column name="active" type="boolean" valueBoolean="true">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_date" type="timestamp">
+            <column name="date_created" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="edited_date" type="timestamp"/>
+            <column name="date_edited" type="timestamp"/>
         </createTable>
 		
         <addForeignKeyConstraint baseColumnNames="user_id"
@@ -55,5 +72,16 @@
                                  referencedColumnNames="id"
                                  referencedTableName="comment"/>
 		
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="level"
+                                 constraintName="fk_level_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+        
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="level"
+                                 constraintName="fk_level_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
 	</changeSet>							
 </databaseChangeLog>

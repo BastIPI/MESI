@@ -7,7 +7,7 @@ export class Comment {
     level: Level;
     children? : Comment[];
     active: boolean;
-    createdDate: Date;
-    editedDate?: Date;
+    dateCreated: Date;
+    dateEdited?: Date;
     editedBy?: User;
 }
