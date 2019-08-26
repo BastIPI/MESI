@@ -6,6 +6,8 @@ import java.time.Instant;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ipicascadeteam.mesi.level.Level;
 import com.ipicascadeteam.mesi.user.User;
 
@@ -27,6 +29,7 @@ public class Comment implements Serializable {
     @ManyToOne
     @JoinColumn
     @NotNull
+    @JsonIgnore
     private Level level;
 
     @NotNull
@@ -48,8 +51,6 @@ public class Comment implements Serializable {
 
     @Column(name = "date_edited")
     private Instant dateEdited = null;
-    
-    
 
     @Override
     public String toString() {

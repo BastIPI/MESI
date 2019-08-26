@@ -3,7 +3,6 @@ package com.ipicascadeteam.mesi.level;
 import com.ipicascadeteam.mesi.category.Category;
 import com.ipicascadeteam.mesi.comment.Comment;
 import com.ipicascadeteam.mesi.evaluation.Evaluation;
-import com.ipicascadeteam.mesi.level.LevelContainer;
 import com.ipicascadeteam.mesi.user.User;
 
 import java.io.Serializable;
@@ -45,7 +44,15 @@ public class Level implements Serializable {
   private User user;
 
   @OneToMany(mappedBy = "level")
-  private Set<LevelContainer> levelContainers;
+  private Set<LevelElement> levelElements;
+  
+  @Size(max = 512)
+  @Column(name = "container_css_base", length = 512, nullable = false)
+  private String containerCssBase;
+
+  @Size(max = 512)
+  @Column(name = "container_css_to_find", length = 512)
+  private String containerCssToFind;
 
   @NotNull
   @Column(name = "date_created", nullable = false)
@@ -61,12 +68,6 @@ public class Level implements Serializable {
   @JsonIgnore
   @OneToMany(mappedBy = "level")
   private Set<Evaluation> evaluations;
-
-  @Transient
-  private Long evaluationPos;
-
-  @Transient
-  private Long evaluationNeg;
 
   public Long getId() {
     return id;
@@ -124,14 +125,6 @@ public class Level implements Serializable {
     this.evaluations = evaluations;
   }
 
-  public Set<LevelContainer> getLevelContainers() {
-    return levelContainers;
-  }
-
-  public void setLevelContainers(Set<LevelContainer> levelContainers) {
-    this.levelContainers = levelContainers;
-  }
-
   public Instant getDateCreated() {
     return dateCreated;
   }
@@ -148,9 +141,28 @@ public class Level implements Serializable {
     this.dateEdited = dateEdited;
   }
 
-  @PostLoad
-  public void calculateSumEvaluations(){
-    this.evaluationPos = this.getEvaluations().stream().filter(eval -> eval.getType() == 1).count();
-    this.evaluationNeg = this.getEvaluations().stream().filter(eval -> eval.getType() == 0).count();
+  public Set<LevelElement> getLevelElements() {
+    return levelElements;
   }
+
+  public void setLevelElements(Set<LevelElement> levelElements) {
+    this.levelElements = levelElements;
+  }
+
+  public String getContainerCssBase() {
+    return containerCssBase;
+  }
+
+  public void setContainerCssBase(String containerCssBase) {
+    this.containerCssBase = containerCssBase;
+  }
+
+  public String getContainerCssToFind() {
+    return containerCssToFind;
+  }
+
+  public void setContainerCssToFind(String containerCssToFind) {
+    this.containerCssToFind = containerCssToFind;
+  }
+  
 }
