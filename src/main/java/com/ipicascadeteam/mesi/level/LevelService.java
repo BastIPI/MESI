@@ -28,5 +28,5 @@ public class LevelService {
 
 	public Level findById(Long id) {
 		return levelRepository.findById(id).get();
-	}
+    }
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="20190816150000-1" author="bastipi">
+
+        <createTable tableName="level_container">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="css_base" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="css_to_find" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="level_element">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level_container_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="css_base" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="css_to_find" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		
+        <addForeignKeyConstraint baseColumnNames="level_id"
+                                 baseTableName="level_container"
+                                 constraintName="fk_level_container_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="level"/>
+
+        <addForeignKeyConstraint baseColumnNames="level_container_id"
+                                 baseTableName="level_element"
+                                 constraintName="fk_level_element_level_container_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="level_container"/>
+		
+	</changeSet>							
+</databaseChangeLog>

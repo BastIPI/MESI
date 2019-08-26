@@ -3,6 +3,7 @@ package com.ipicascadeteam.mesi.level;
 import com.ipicascadeteam.mesi.category.Category;
 import com.ipicascadeteam.mesi.comment.Comment;
 import com.ipicascadeteam.mesi.evaluation.Evaluation;
+import com.ipicascadeteam.mesi.level.LevelContainer;
 import com.ipicascadeteam.mesi.user.User;
 
 import java.io.Serializable;
@@ -10,48 +11,62 @@ import java.time.Instant;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "level")
 public class Level implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "title", length = 100, unique = true, nullable = false)
-    private String title;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "description", length = 255, nullable = false)
-    private String description;
+  @NotNull
+  @Size(min = 1, max = 100)
+  @Column(name = "title", length = 100, nullable = false)
+  private String title;
 
-    @ManyToOne
-    @JoinColumn
-    @NotNull
-    private Category category;
+  @NotNull
+  @Size(min = 1, max = 255)
+  @Column(name = "description", length = 255, nullable = false)
+  private String description;
 
-    @ManyToOne
-    @JoinColumn
-    @NotNull
-    private User user;
+  @ManyToOne
+  @JoinColumn
+  @NotNull
+  private Category category;
 
-    @NotNull
-    @Column(name = "date_creation", nullable = false)
-    private Instant dateCreation;
+  @ManyToOne
+  @JoinColumn
+  @NotNull
+  private User user;
 
-    @OneToMany(mappedBy = "level")
-    private Set<Comment> comments;
+  @OneToMany(mappedBy = "level")
+  private Set<LevelContainer> levelContainers;
 
-    @OneToMany(mappedBy = "level")
-    private Set<Evaluation> evaluations;
+  @NotNull
+  @Column(name = "date_created", nullable = false)
+  private Instant dateCreated;
+
+  @NotNull
+  @Column(name = "date_edited", nullable = false)
+  private Instant dateEdited;
+
+  @OneToMany(mappedBy = "level")
+  private Set<Comment> comments;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "level")
+  private Set<Evaluation> evaluations;
+
+  @Transient
+  private Long evaluationPos;
+
+  @Transient
+  private Long evaluationNeg;
 
   public Long getId() {
     return id;
@@ -93,14 +108,6 @@ public class Level implements Serializable {
     this.user = user;
   }
 
-  public Instant getDateCreation() {
-    return dateCreation;
-  }
-
-  public void setDateCreation(Instant dateCreation) {
-    this.dateCreation = dateCreation;
-  }
-
   public Set<Comment> getComments() {
     return comments;
   }
@@ -115,5 +122,35 @@ public class Level implements Serializable {
 
   public void setEvaluations(Set<Evaluation> evaluations) {
     this.evaluations = evaluations;
+  }
+
+  public Set<LevelContainer> getLevelContainers() {
+    return levelContainers;
+  }
+
+  public void setLevelContainers(Set<LevelContainer> levelContainers) {
+    this.levelContainers = levelContainers;
+  }
+
+  public Instant getDateCreated() {
+    return dateCreated;
+  }
+
+  public void setDateCreated(Instant dateCreated) {
+    this.dateCreated = dateCreated;
+  }
+
+  public Instant getDateEdited() {
+    return dateEdited;
+  }
+
+  public void setDateEdited(Instant dateEdited) {
+    this.dateEdited = dateEdited;
+  }
+
+  @PostLoad
+  public void calculateSumEvaluations(){
+    this.evaluationPos = this.getEvaluations().stream().filter(eval -> eval.getType() == 1).count();
+    this.evaluationNeg = this.getEvaluations().stream().filter(eval -> eval.getType() == 0).count();
   }
 }

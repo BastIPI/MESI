@@ -1,6 +1,5 @@
 import {Category} from "../category/category.model";
 import {User} from "../user/user.model";
-import {Evaluation} from "../evaluation/evaluation.model";
 
 export class Level {
     id: number;
@@ -8,7 +7,10 @@ export class Level {
     description: string;
     category: Category;
     user: User;
-    dateCreation: Date;
+    containers: LevelContainer[];
+    dateCreated: Date;
+    dateEdited: Date;
     comments: Comment[];
-    evaluations: Evaluation[];
+    evaluationPos: number;
+    evaluationNeg: number;
 }
