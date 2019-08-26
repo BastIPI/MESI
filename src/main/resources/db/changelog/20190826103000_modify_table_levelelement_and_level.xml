@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="20190826103000-1" author="bastipi">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_level_element_level_container_id"/>
+        </preConditions>
+        <dropUniqueConstraint constraintName="fk_level_element_level_container_id" tableName="level_element"/>
+	</changeSet>		
+    
+    <changeSet id="20190826103000-2" author="bastipi">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_level_container_level_id"/>
+        </preConditions>
+        <dropUniqueConstraint constraintName="fk_level_container_level_id" tableName="level_container"/>
+	</changeSet>		
+    
+    <changeSet id="20190826103000-3" author="bastipi">
+
+        <dropColumn columnName="level_container_id" tableName="level_element"/>
+        <dropColumn columnName="css_base" tableName="level_element"/>
+        <dropColumn columnName="css_to_find" tableName="level_element"/>
+
+        <dropTable cascadeConstraints="true" tableName="level_container"/>
+
+        <addColumn tableName="level_element">
+            <column name="level_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="css_base" type="varchar(512)"/>
+            <column name="css_to_find" type="varchar(512)"/>
+        </addColumn>
+
+        <addColumn tableName="level">
+            <column name="container_css_base" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="container_css_to_find" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="level_id"
+                                 baseTableName="level_element"
+                                 constraintName="fk_level_element_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="level"/>
+		
+	</changeSet>							
+</databaseChangeLog>

@@ -6,10 +6,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.ipicascadeteam.mesi.level.LevelContainer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Container
+ * LevelElement
  */
 @Entity
 @Table(name = "level_element")
@@ -29,14 +29,13 @@ public class LevelElement implements Serializable{
     @ManyToOne
     @JoinColumn
     @NotNull
-    private LevelContainer levelContainer;
+    @JsonIgnore
+    private Level level;
 
-    @NotNull
     @Size(min = 1, max = 512)
     @Column(name = "css_base", length = 512, nullable = false)
     private String cssBase;
 
-    @NotNull
     @Size(min = 1, max = 512)
     @Column(name = "css_to_find", length = 512)
     private String cssToFind;
@@ -57,14 +56,6 @@ public class LevelElement implements Serializable{
         this.name = name;
     }
 
-    public LevelContainer getLevelContainer() {
-        return levelContainer;
-    }
-
-    public void setLevelContainer(LevelContainer levelContainer) {
-        this.levelContainer = levelContainer;
-    }
-
     public String getCssBase() {
         return cssBase;
     }
@@ -81,5 +72,11 @@ public class LevelElement implements Serializable{
         this.cssToFind = cssToFind;
     }
 
-    
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
 }

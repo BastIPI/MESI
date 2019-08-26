@@ -7,7 +7,6 @@ export class Level {
     description: string;
     category: Category;
     user: User;
-    //containers: LevelContainer[];
     dateCreated: Date;
     dateEdited: Date;
     comments: Comment[];
