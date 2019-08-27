@@ -37,6 +37,12 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    //console.log('register');
+    //console.log("User : " + this.registerForm.get(['userName']).value);
+    //console.log("pwd : " + this.registerForm.get(['password']).value);
+    //console.log("first : " + this.registerForm.get(['firstName']).value);
+    //console.log("last : " + this.registerForm.get(['lastName']).value);
+    //console.log("email : " + this.registerForm.get(['email']).value);
     const user = new User;
     user.userName = this.registerForm.get(['userName']).value;
     user.password = this.registerForm.get(['password']).value;
@@ -48,6 +54,7 @@ export class RegisterComponent implements OnInit {
       response => {
         this.registered = true;
         this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
+        console.log("User créé");
       },
       response => {
         console.log("Error : " + response);

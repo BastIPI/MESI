@@ -1,4 +1,18 @@
+<<<<<<< Updated upstream
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 .lower {
     font-size: 14px;
+=======
+.lower {
+    text-size-adjust: 10px;
+}
+
+.div-login .div-registry{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+>>>>>>> Stashed changes
 }
