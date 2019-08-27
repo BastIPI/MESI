@@ -20,6 +20,8 @@
     <include file="db/changelog/20190716113000_create_table_evaluation.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20190816150000_create_table_levelelement_and_levelcontainer.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20190826103000_modify_table_levelelement_and_level.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/20190827090000_create_table_image_element.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/20190827090000_modify_table_levelelement.xml" relativeToChangelogFile="false"/>
 	
 	
 	

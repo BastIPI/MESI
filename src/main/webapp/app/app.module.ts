@@ -3,7 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule, MatToolbarModule } from '@angular/material';
+import { 
+  MatFormFieldModule, 
+  MatInputModule, 
+  MatButtonModule, 
+  MatCardModule, 
+  MatIconModule, 
+  MatToolbarModule,
+  MatSelectModule, 
+  MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -18,6 +26,9 @@ import { HomeComponent } from './home/home.component';
 import { LevelComponent } from './level/level.component';
 import { CommentComponent } from './comment/comment.component';
 import { CategoryComponent } from './category/category.component';
+import { LevelMechanicComponent } from './level_mechanic/level_mechanic.component';
+import { LevelMechanicFormComponent } from './level_mechanic/level_mechanic_form.component';
+import { ElementImageComponent } from './element_image/element_image.component';
 
 const matModules = [
 	MatFormFieldModule,
@@ -25,7 +36,10 @@ const matModules = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSelectModule,
+  MatListModule,
+  MatCardModule
 ];
 
 @NgModule({
@@ -36,7 +50,10 @@ const matModules = [
 	  HomeComponent,
 	  LevelComponent,
 	  CommentComponent,
-    CategoryComponent
+    CategoryComponent,
+    LevelMechanicComponent,
+    LevelMechanicFormComponent,
+    ElementImageComponent
   ],
   imports: [
     BrowserModule,

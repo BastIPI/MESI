@@ -6,6 +6,9 @@ import { RegisterComponent } from './authentication/register.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { LevelComponent } from './level/level.component';
+import { LevelMechanicComponent } from './level_mechanic/level_mechanic.component';
+import { LevelMechanicFormComponent } from './level_mechanic/level_mechanic_form.component';
+import { ElementImageComponent } from './element_image/element_image.component';
 
 
 const routes: Routes = [
@@ -14,16 +17,42 @@ const routes: Routes = [
       path: 'home',
       component: HomeComponent,
       data: {
-        authorities: ['ROLE_ADMIN']
+        authorities: ['ROLE_USER']
       },
-      canActivate: [AuthGuard] },
+      canActivate: [AuthGuard]
+  },
+  { 
+      path: 'levelmechanic/:id',
+      component: LevelMechanicComponent,
+      data: {
+        authorities: ['ROLE_USER']
+      },
+      canActivate: [AuthGuard]
+  },
+  { 
+      path: 'levelmechanicform',
+      component: LevelMechanicFormComponent,
+      data: {
+        authorities: ['ROLE_USER']
+      },
+      canActivate: [AuthGuard]
+  },
   { 
       path: 'levels',
       component: LevelComponent,
       data: {
         authorities: ['ROLE_USER']
       },
-      canActivate: [AuthGuard] },
+      canActivate: [AuthGuard]
+  },
+  { 
+      path: 'elementimage',
+      component: ElementImageComponent,
+      data: {
+        authorities: ['ROLE_ADMIN']
+      },
+      canActivate: [AuthGuard]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];
