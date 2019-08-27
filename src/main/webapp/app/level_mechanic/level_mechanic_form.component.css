@@ -1,0 +1,9 @@
+#cardForm {
+    width:60%;
+    margin: 30px auto;
+}
+
+#buttonSubmit {
+    float:right;
+    margin-right:10px;
+}
