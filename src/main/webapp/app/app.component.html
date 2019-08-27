@@ -4,7 +4,8 @@
         <mat-toolbar-row>
            <span>LOGO</span>
            <span style="flex: 1 1 auto;"></span> <!-- Aligne la suite sur le côté droit de l'écran -->
-           <a class="lower" routerLink="/liens">Liens utiles&nbsp;&nbsp;</a>
+           <a class="lower" routerLink="/link_url">Liens utiles&nbsp;&nbsp;</a>
+           <span>&nbsp;&nbsp;</span>
            <a class="lower" routerLink="/login" (click)="logout()">Logout</a>
         </mat-toolbar-row>
      </mat-toolbar>
@@ -15,8 +16,10 @@
           <mat-toolbar-row>
              <span style="flex: 1 1 auto;"></span> <!-- Aligne la suite sur le côté droit de l'écran -->
              <a class="lower" routerLink="/about" (click)="about()">A propos</a>
-             <a class="lower" routerLink="/contact">&nbsp;&nbsp;Contact</a>
-             <span class="lower">&nbsp;&nbsp;Copyright 2019</span>
+             <span>&nbsp;&nbsp;</span>
+             <a class="lower" routerLink="/contact">Contact</a>
+             <span>&nbsp;&nbsp;</span>
+             <span class="lower">Copyright 2019</span>
           </mat-toolbar-row>
        </mat-toolbar>
   </div>

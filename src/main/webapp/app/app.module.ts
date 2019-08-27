@@ -29,6 +29,7 @@ import { CategoryComponent } from './category/category.component';
 import { LevelMechanicComponent } from './level_mechanic/level_mechanic.component';
 import { LevelMechanicFormComponent } from './level_mechanic/level_mechanic_form.component';
 import { ElementImageComponent } from './element_image/element_image.component';
+import { LinkUrlComponent } from './link-url/link-url.component';
 
 const matModules = [
 	MatFormFieldModule,
@@ -52,7 +53,8 @@ const matModules = [
     CategoryComponent,
     LevelMechanicComponent,
     LevelMechanicFormComponent,
-    ElementImageComponent
+    ElementImageComponent,
+    LinkUrlComponent
   ],
   imports: [
     BrowserModule,

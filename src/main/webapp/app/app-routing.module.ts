@@ -9,7 +9,7 @@ import { LevelComponent } from './level/level.component';
 import { LevelMechanicComponent } from './level_mechanic/level_mechanic.component';
 import { LevelMechanicFormComponent } from './level_mechanic/level_mechanic_form.component';
 import { ElementImageComponent } from './element_image/element_image.component';
-
+import { LinkUrlComponent } from './link-url/link-url.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -54,7 +54,8 @@ const routes: Routes = [
       canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'link_url', component: LinkUrlComponent }
 ];
 
 @NgModule({
