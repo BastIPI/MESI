@@ -1,4 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-<a routerLink="/login" (click)="logout()">Logout</a>
+<div style="text-align:right">
+    <mat-toolbar>
+        <mat-toolbar-row>
+           <span style="flex: 1 1 auto;"></span> <!-- Aligne la suite sur le côté droit de l'écran -->
+           <a routerLink="/login" (click)="logout()">Logout</a>
+        </mat-toolbar-row>
+     </mat-toolbar>
+</div>
 <router-outlet></router-outlet>
