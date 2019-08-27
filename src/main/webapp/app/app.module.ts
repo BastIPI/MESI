@@ -34,7 +34,6 @@ const matModules = [
 	MatFormFieldModule,
 	MatInputModule,
   MatButtonModule,
-  MatCardModule,
   MatIconModule,
   MatToolbarModule,
   MatSelectModule,
