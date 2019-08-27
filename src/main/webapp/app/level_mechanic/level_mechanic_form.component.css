@@ -3,7 +3,6 @@
     margin: 30px auto;
 }
 
-#buttonSubmit {
+#buttonSubmit, #buttonPreview {
     float:right;
-    margin-right:10px;
 }
