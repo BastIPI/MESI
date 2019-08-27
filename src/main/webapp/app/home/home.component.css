@@ -27,6 +27,13 @@
     margin-top:10%;
 }
 
+.dropdown{
+    float: left;
+    width: 100%;
+    z-index: 1000;
+    height: 35px;
+}
+
 .game{
     display: inline-block;
 }
@@ -58,13 +65,20 @@
     text-align: left;
     margin: 15px;
 }
+
+.jeu{
+    margin-top:-55px;
+}
+
 .pouce{
     width: 15px;
     height: 15px;
 }
 .note{
-    font-size: 8px;
+    font-size: 12px;
     font-weight: bold;
+    padding-right: 0px;
+    margin-left: 20px;
 }
 
 .game.up, .game.down{

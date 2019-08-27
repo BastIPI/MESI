@@ -12,14 +12,22 @@
     </span>
 </div>
 <div class='category-content scroll'>
-    <div class='head' >
-            <span class='titre'>JEUX</span>
-            <span class='dropdown'>
-            </span>
+    <div class='titre'>JEUX</div>
+    <div class='dropdown'>
+        <mat-form-field>
+            <mat-label>Filtres: </mat-label>
+            <mat-select [(ngModel)]="categorySelected">
+                <mat-option value="0">Tout</mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.id">
+                    {{category.title}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
-    <div class="category-panel row" *ngFor="let level of levels">
-        <div class="game title col-md-4">{{level.title}}</div>
-        <div class='notes col-md-5'>
+    <br/>
+    <div class="category-panel row" *ngFor="let level of filterCat()">
+        <div class="game title col-md-6">{{level.title}}</div>
+        <div class='notes col-md-6'>
             <div class='game up'> 
                 <div>
                     <img class='pouce' src="../../assets/up.svg">
@@ -32,8 +40,10 @@
                 </div>
                 <div class='note'>{{level.evaluationNeg}}</div>
             </div>
+            <div class='game partage'>
+                    <img class='share' src="../../assets/share.svg">
+            </div>
         </div>
-        <div class='game share col-md-3'> share </div>
         <hr>
     </div>
 </div>

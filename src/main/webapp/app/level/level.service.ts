@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Level } from './level.model';
+import { Category } from '../category/category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,12 @@ export class LevelService {
 
   getLevels(): Observable<Level[]>{
     const levels = new Array<Level>();
+
     levels.push(
       new Level({
         id: 1,
         title: 'game1',
-        category: 'flexbox',
+        category: new Category({id:1,title:"titre",description:""}),
         description: 'description jeu 1',
         dateCreated: '10/01/1995',
         dateEdited: '10/01/1995',
@@ -31,7 +33,7 @@ export class LevelService {
       new Level({
         id: 2,
         title: 'game2',
-        category: 'text',
+        category: new Category({id:2,title:"titre",description:""}),
         description: 'description jeu 2',
         dateCreated: '11/01/1995',
         dateEdited: '11/01/1995',
@@ -44,7 +46,7 @@ export class LevelService {
       new Level({
         id: 3,
         title: 'game3',
-        category: 'flexbox',
+        category: new Category({id:3,title:"titre",description:""}),
         description: 'description jeu 3',
         dateCreated: '13/01/1995',
         dateEdited: '13/01/1995',
@@ -57,7 +59,7 @@ export class LevelService {
       new Level({
         id: 4,
         title: 'game4',
-        category: 'text',
+        category: new Category({id:1,title:"titre",description:""}),
         description: 'description jeu 4',
         dateCreated: '14/01/1995',
         dateEdited: '14/01/1995',
@@ -70,7 +72,7 @@ export class LevelService {
       new Level({
         id: 5,
         title: 'game5',
-        category: 'flexbox',
+        category: new Category({id:2,title:"titre",description:""}),
         description: 'description jeu 5',
         dateCreated: '15/01/1995',
         dateEdited: '15/01/1995',
@@ -83,7 +85,7 @@ export class LevelService {
       new Level({
         id: 6,
         title: 'game6',
-        category: 'text',
+        category: new Category({id:3,title:"titre",description:""}),
         description: 'description jeu 6',
         dateCreated: '16/01/1995',
         dateEdited: '16/01/1995',

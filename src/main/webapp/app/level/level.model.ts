@@ -20,6 +20,7 @@ export class Level {
         this.description = d.description;
         this.dateCreated = d.dateCreated;
         this.dateEdited = d.dateEdited;
+        this.category = d.category;
         this.evaluationPos = d.evaluationPos;
         this.evaluationNeg = d.evaluationNeg;
     }
