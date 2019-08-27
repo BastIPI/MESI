@@ -2,11 +2,12 @@ package com.ipicascadeteam.mesi.elementimage;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 @Service
 @Transactional
@@ -16,8 +17,8 @@ public class ElementImageService {
     private ElementImageRepository elementImageRepository;
     
     @Transactional(readOnly = true)
-    public Page<ElementImage> getAllElementImages(Pageable pageable) {
-        return elementImageRepository.findAll(pageable);
+    public List<ElementImage> getAllElementImages() {
+        return elementImageRepository.findAll();
     }
 
 	public ElementImage save(@Valid ElementImage elementImage) {

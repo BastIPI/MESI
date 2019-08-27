@@ -1,0 +1,29 @@
+#cardForm {
+    width:60%;
+    margin:30px auto 40px auto;
+}
+
+#buttonSubmit {
+    float:right;
+    margin-right:10px;
+}
+
+.elementImageCardName {
+    font-weight:bold;
+    text-align:center;
+}
+
+.elementImageCard {
+    width:200px;
+    margin:20px 10px;
+}
+
+#containerElementImageCard {
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}

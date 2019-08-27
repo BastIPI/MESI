@@ -18,16 +18,13 @@ public class ElementImageController {
     private ElementImageService elementImageService;
 
     /**
-     * {@code GET /elementimages} : get all levels.
+     * {@code GET /elementimages} : get all elementImages
      *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body all levels.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body all elementImages.
      */
     @GetMapping("/elementimages")
-    public ResponseEntity<List<ElementImage>> getAllElementImages(Pageable pageable) {
-        final Page<ElementImage> page = elementImageService.getAllElementImages(pageable);
-        // HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
-        return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
+    public ResponseEntity<List<ElementImage>> getAllElementImages() {
+        return new ResponseEntity<>(elementImageService.getAllElementImages(), HttpStatus.OK);
     }
 
     /**
