@@ -1,38 +1,54 @@
-<h3>Ajouter une image</h3>
-<form class="container-fluid" role="form" (ngSubmit)="save()" [formGroup]="elementImageForm">
-	<div class="row">
-		<mat-form-field class="col-12">
-			<input type="text" matInput placeholder="Nom" name="name" id="name" formControlName="title">
-		</mat-form-field>
-    </div>
-	<div class="row">
-        <mat-card class="col-12">
-            <mat-card-title>Image de base</mat-card-title>
-            <mat-card-content>
+<mat-card id="cardForm" class="col-12">
+    <h4>Ajouter une image</h4>
+    <form class="container-fluid" role="form" (ngSubmit)="save()" [formGroup]="elementImageForm">
+        <div class="row">
+            <mat-form-field class="col-12">
+                <input type="text" matInput placeholder="Nom" name="name" id="name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-6">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-12">
                         <input hidden id="inputImageBase" type="file" accept="image/*" (change)="loadImage($event, 'base')" />
-                        <label for="inputImageBase" class="md-button md-raised md-primary">Choose Files</label>
-                    </div>
-                    <div class="col-3">
-                        <img [src]="'data:' + elementImage.baseContentType + ';base64,' + elementImage.base" style="height:100px;width:100px" *ngIf="elementImage.base"/>
+                        <label for="inputImageBase" class="md-button md-raised md-primary">Choisir l'image de base...</label>
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
-        <mat-card class="col-12">
-            <mat-card-title>Image de résultat (optionnelle)</mat-card-title>
-            <mat-card-content>
                 <div class="row">
-                    <div class="col-9">
-                        <input hidden id="inputImageResult" type="file" accept="image/*" (change)="loadImage($event, 'result')" />
-                        <label for="inputImageResult" class="md-button md-raised md-primary">Choose Files</label>
-                    </div>
-                    <div class="col-3">
-                        <img [src]="'data:' + elementImage.resultContentType + ';base64,' + elementImage.result" style="height:100px;width:100px" *ngIf="elementImage.result"/>
+                    <div class="col-12">
+                        <p>Aperçu :</p>
+                        <img [src]="'data:' + elementImage.baseContentType + ';base64,' + elementImage.base" style="height:200px;width:200px" *ngIf="elementImage.base"/>
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
-</form>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <input hidden id="inputImageResult" type="file" accept="image/*" (change)="loadImage($event, 'result')" />
+                        <label for="inputImageResult" class="md-button md-raised md-primary">Choisir l'image de résultat...</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p>Aperçu :</p>
+                        <img [src]="'data:' + elementImage.resultContentType + ';base64,' + elementImage.result" style="height:200px;width:200px" *ngIf="elementImage.result"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" mat-stroked-button color="primary" id="buttonSubmit">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+</mat-card>
+
+<h4>Liste des images disponibles :</h4>
+<div id="containerElementImageCard">
+    <mat-card class="elementImageCard" *ngFor="let ei of elementImages">
+        <div class="elementImageCardName">{{ ei.name }}</div>
+        <img [src]="'data:' + ei.baseContentType + ';base64,' + ei.base" style="width:50%" *ngIf="ei.base"/>
+        <img [src]="'data:' + ei.resultContentType + ';base64,' + ei.result" style="width:50%" *ngIf="ei.result"/>
+    </mat-card>
+</div>

@@ -1,0 +1,72 @@
+
+.profil{
+    float: right;
+    margin: 0px 15px 10px 15px;
+}
+
+.logo{
+    margin: 0px 15px 10px 15px;
+}
+
+.fas.fa-play{
+    width: 40px;
+}
+
+.domaneJeu{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.category-content{
+    border-color: darkgray;
+    border-style: solid;
+    text-align: center;
+    max-width: 35em;
+    margin: auto;
+    height: 15em;
+    margin-top:10%;
+}
+
+.game{
+    display: inline-block;
+}
+
+.play, .up, .down{
+    margin-left: 35px;
+}
+
+.share{
+    padding-left:70px;
+}
+
+.imgMenu{
+    float: right;
+}
+
+.scroll{
+    overflow-y: scroll;
+}
+
+.titre{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.category-panel{
+    text-align: left;
+    margin: 15px;
+}
+.pouce{
+    width: 15px;
+    height: 15px;
+}
+.note{
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.game.up, .game.down{
+    text-align: center;
+}

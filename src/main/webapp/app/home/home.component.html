@@ -1,1 +1,39 @@
-<p>home works!</p>
+
+<div>
+    <span class='header logo'> logo</span>
+    <span class ='header profil' (click)='menuExpended = !menuExpended'>
+        <img class='imgMenu' *ngIf ='!menuExpended' src="../../assets/arrowDown.svg" >
+        <img class='imgMenu' *ngIf ='menuExpended' src="../../assets/arrowUp.svg" >
+        <img class='imgMenu' src="../../assets/user.svg">
+        <div class='menu' *ngIf='menuExpended'>
+            <div (click)='logout()'>Déconnexion</div>
+            <div routerLink=''>Voir mon profil</div>
+        </div>
+    </span>
+</div>
+<div class='category-content scroll'>
+    <div class='head' >
+            <span class='titre'>JEUX</span>
+            <span class='dropdown'>
+            </span>
+    </div>
+    <div class="category-panel row" *ngFor="let level of levels">
+        <div class="game title col-md-4">{{level.title}}</div>
+        <div class='notes col-md-5'>
+            <div class='game up'> 
+                <div>
+                    <img class='pouce' src="../../assets/up.svg">
+                </div>
+                <div class='note'>{{level.evaluationPos}}</div>
+            </div>
+            <div class='game down'>
+                <div>
+                    <img class='pouce' src="../../assets/down.svg">
+                </div>
+                <div class='note'>{{level.evaluationNeg}}</div>
+            </div>
+        </div>
+        <div class='game share col-md-3'> share </div>
+        <hr>
+    </div>
+</div>

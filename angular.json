@@ -85,7 +85,8 @@
               "src/main/webapp/assets"
             ],
             "styles": [
-              "src/main/webapp/styles.css"
+              "src/main/webapp/styles.css",
+              "../node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           }
