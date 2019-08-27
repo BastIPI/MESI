@@ -13,6 +13,7 @@ import {
   MatSelectModule, 
   MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -59,6 +60,7 @@ const matModules = [
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    AngularFontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Level } from './level.model';
 
 @Injectable({
@@ -10,7 +10,90 @@ export class LevelService {
 
   public resourceUrl = 'http://localhost:8080/api/levels';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ) { }
+
+  getLevels(): Observable<Level[]>{
+    const levels = new Array<Level>();
+    levels.push(
+      new Level({
+        id: 1,
+        title: 'game1',
+        category: 'flexbox',
+        description: 'description jeu 1',
+        dateCreated: '10/01/1995',
+        dateEdited: '10/01/1995',
+        comments: [],
+        evaluationPos: 4,
+        evaluationNeg: 3
+      })
+    );
+    levels.push(
+      new Level({
+        id: 2,
+        title: 'game2',
+        category: 'text',
+        description: 'description jeu 2',
+        dateCreated: '11/01/1995',
+        dateEdited: '11/01/1995',
+        comments: [],
+        evaluationPos: 4,
+        evaluationNeg: 3
+      })
+    );
+    levels.push(
+      new Level({
+        id: 3,
+        title: 'game3',
+        category: 'flexbox',
+        description: 'description jeu 3',
+        dateCreated: '13/01/1995',
+        dateEdited: '13/01/1995',
+        comments: [],
+        evaluationPos: 4,
+        evaluationNeg: 3
+      })
+    );
+    levels.push(
+      new Level({
+        id: 4,
+        title: 'game4',
+        category: 'text',
+        description: 'description jeu 4',
+        dateCreated: '14/01/1995',
+        dateEdited: '14/01/1995',
+        comments: [],
+        evaluationPos: 4,
+        evaluationNeg: 3
+      })
+    );
+    levels.push(
+      new Level({
+        id: 5,
+        title: 'game5',
+        category: 'flexbox',
+        description: 'description jeu 5',
+        dateCreated: '15/01/1995',
+        dateEdited: '15/01/1995',
+        comments: [],
+        evaluationPos: 4,
+        evaluationNeg: 3
+      })
+    );
+    levels.push(
+      new Level({
+        id: 6,
+        title: 'game6',
+        category: 'text',
+        description: 'description jeu 6',
+        dateCreated: '16/01/1995',
+        dateEdited: '16/01/1995',
+        comments: [],
+        evaluationPos: 4,
+        evaluationNeg: 3
+      })
+    );
+    return of(levels);
+  }
 
   getAll(): Observable<HttpResponse<Level[]>> {
       return this.http.get<Level[]>(this.resourceUrl, { observe: 'response' });

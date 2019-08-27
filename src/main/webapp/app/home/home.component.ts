@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { User } from '../user/user.model';
+import { LevelService } from '../level/level.service';
+import { Level } from '../level/level.model';
+import { CategoryService } from '../category/category.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +12,17 @@ import { User } from '../user/user.model';
 })
 export class HomeComponent implements OnInit {
   loggedUser : User;
+  levels: Level[];
+  menuExpended: boolean;
+  level: Level;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, 
+    private levelService: LevelService,
+    private categoryService: CategoryService) { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.levelService.getLevels().subscribe(result => {
+      this.levels = result;
+    })
+  }
 }
