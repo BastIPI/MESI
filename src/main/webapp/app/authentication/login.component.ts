@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(userName, password).subscribe(
       response => {
         this.registered = true;
+        // On change de page en allant vers l'url de redirection
         this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
         console.log("Connexion réussie !");
       },

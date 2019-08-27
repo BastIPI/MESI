@@ -1,10 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:right">
+<div style="text-align:center">
     <mat-toolbar>
         <mat-toolbar-row>
+           <span>LOGO</span>
            <span style="flex: 1 1 auto;"></span> <!-- Aligne la suite sur le côté droit de l'écran -->
-           <a routerLink="/login" (click)="logout()">Logout</a>
+           <a class="lower" routerLink="/liens">Liens utiles&nbsp;&nbsp;</a>
+           <a class="lower" routerLink="/login" (click)="logout()">Logout</a>
         </mat-toolbar-row>
      </mat-toolbar>
 </div>
 <router-outlet></router-outlet>
+<div style="text-align:center">
+      <mat-toolbar>
+          <mat-toolbar-row>
+             <span style="flex: 1 1 auto;"></span> <!-- Aligne la suite sur le côté droit de l'écran -->
+             <a class="lower" routerLink="/about" (click)="about()">A propos</a>
+             <a class="lower" routerLink="/contact">&nbsp;&nbsp;Contact</a>
+             <span class="lower">&nbsp;&nbsp;Copyright 2019</span>
+          </mat-toolbar-row>
+       </mat-toolbar>
+  </div>

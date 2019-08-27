@@ -1,31 +1,34 @@
-<div class="container-fluid">
-	<mat-card class="row" style="margin: auto;">
+<div class="container-fluid div-login">
+	<mat-card class="row">
 		<mat-card-header>
 			<h4 style="margin: auto;">Bonjour !</h4>
 		</mat-card-header>			
-		<mat-card-content style="margin: auto;">
-			<form class="container-fluid" role="form" style="border: 0px; margin: auto;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
+		<mat-card-content>
+			<form class="container-fluid" role="form" style="margin: auto;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
 				<div class="row">
 					<mat-form-field>
-						<input matInput placeholder="Username" name="userName" id="userName" formControlName="userName" required>
+						<mat-label>Login</mat-label>
+						<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
 					</mat-form-field>
 				</div>
 				<div class="row">
 					<mat-form-field>
+						<mat-label>Mot de passe</mat-label>
 						<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
 						<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
-							<mat-icon class="material-icons" *ngIf="hide" aria-hidden="false" aria-label="Rendre Visible">Voir</mat-icon>
-							<mat-icon class="material-icons" *ngIf="!hide" aria-hidden="false" aria-label="Rendre Invisible">Cacher</mat-icon>
+							<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
 						</button>
 					</mat-form-field>
-				</div>
-				<div class="row">
-					<a mat-button type="submit" mat-raised-button color="primary">Connexion</a>
-					<button mat-raised-button color="warning">
-						<a mat-button routerLink="/register">Inscription</a>
-					</button>
-				</div>			
+				</div>		
 			</form>
 		</mat-card-content>
+		<mat-card-actions>
+			<div class="row" style="justify-content: center;">
+				<button type="submit" mat-raised-button color="primary">Connexion</button>
+				<button mat-raised-button color="warning">
+					<a routerLink="/register">Inscription</a>
+				</button>
+			</div>
+		</mat-card-actions>
 	</mat-card>
 </div>
