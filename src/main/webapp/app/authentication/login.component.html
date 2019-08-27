@@ -1,10 +1,10 @@
 <div class="container-fluid">
 	<mat-card class="row" style="margin: auto;">
 		<mat-card-header>
-			<h3 style="margin: auto;">Bonjour !</h3>
+			<h4 style="margin: auto;">Bonjour !</h4>
 		</mat-card-header>			
-		<mat-card-content>
-			<form class="container-fluid" role="form" style="border: 0px;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
+		<mat-card-content style="margin: auto;">
+			<form class="container-fluid" role="form" style="border: 0px; margin: auto;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
 				<div class="row">
 					<mat-form-field>
 						<input matInput placeholder="Username" name="userName" id="userName" formControlName="userName" required>
@@ -19,15 +19,13 @@
 						</button>
 					</mat-form-field>
 				</div>
-		
-		<mat-card-actions>
-			<a mat-button type="submit" mat-raised-button color="primary">Connexion</a>
-			<button mat-raised-button color="warning">
-				<a mat-button routerLink="/register">Inscription</a>
-			</button>
-		</mat-card-actions>
-	
-	</form>
-</mat-card-content>
-</mat-card>
+				<div class="row">
+					<a mat-button type="submit" mat-raised-button color="primary">Connexion</a>
+					<button mat-raised-button color="warning">
+						<a mat-button routerLink="/register">Inscription</a>
+					</button>
+				</div>			
+			</form>
+		</mat-card-content>
+	</mat-card>
 </div>
