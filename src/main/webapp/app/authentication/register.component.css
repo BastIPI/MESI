@@ -3,3 +3,11 @@ form {
     margin:auto;
     border:black 1px solid;
 }
+ .div-registry{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
