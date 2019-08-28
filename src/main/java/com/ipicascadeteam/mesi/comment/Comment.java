@@ -2,6 +2,8 @@ package com.ipicascadeteam.mesi.comment;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -39,6 +41,7 @@ public class Comment implements Serializable {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Comment parent;
 
     @NotNull
@@ -51,6 +54,9 @@ public class Comment implements Serializable {
 
     @Column(name = "date_edited")
     private Instant dateEdited = null;
+
+    @OneToMany(mappedBy = "parent")
+    private Set<Comment> children;
 
     @Override
     public String toString() {

@@ -1,0 +1,12 @@
+id;user_id;level_id;message;parent_id;active;date_created;date_edited
+1;1;1;"Message 1 : blablbablabla";;true;"2019-08-28 13:00:00";
+2;2;;"Message 2 : réponse au message 1 blablbablabla";1;true;"2019-08-28 13:00:00";"2019-08-28 13:00:00"
+3;3;;"Message 3 : réponse au message 1 blablbablabla";1;true;"2019-08-28 13:00:00";
+4;1;;"Message 4 : réponse au message 1 blablbablabla";1;true;"2019-08-28 13:00:00";
+5;2;1;"Message 5 : blablbablabla";;true;"2019-08-28 13:00:00";"2019-08-28 13:00:00"
+6;3;;"Message 6 : réponse au message 5 blablbablabla";5;true;"2019-08-28 13:00:00";
+7;1;1;"Message 7 : blablbablabla";;true;"2019-08-28 13:00:00";
+8;2;1;"Message 8 : blablbablabla";;true;"2019-08-28 13:00:00";
+9;3;;"Message 9 : réponse au message 8 blablbablabla";8;true;"2019-08-28 13:00:00";"2019-08-28 13:00:00"
+10;1;;"Message 10 : réponse au message 8 blablbablabla";8;true;"2019-08-28 13:00:00";"2019-08-28 13:00:00"
+11;2;1;"Message 11 : blablbablabla";;true;"2019-08-28 13:00:00";
