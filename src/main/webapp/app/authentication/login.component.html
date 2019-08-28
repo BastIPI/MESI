@@ -1,32 +1,75 @@
-<div class="container-fluid div-login grad">
-	<mat-card class="row">
-		<mat-card-header>
-			<h4 style="margin: auto;">Bienvenue</h4>
-		</mat-card-header>			
-		<mat-card-content>
-			<form class="container-fluid" role="form" style="margin: auto;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
-				<div class="row">
-					<mat-form-field>
-						<mat-label>Login</mat-label>
-						<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
-					</mat-form-field>
-				</div>
-				<div class="row">
-					<mat-form-field>
-						<mat-label>Mot de passe</mat-label>
-						<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
-						<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
-							<mat-icon>{{ hide ? '../assets/visibility_off.png' : '../assets/visibility.png' }}</mat-icon>
-						</button>
-					</mat-form-field>
-				</div>		
-				<div class="row" style="justify-content: center;">
-					<button type="submit" mat-raised-button color="primary">Connexion</button>
-					<button mat-raised-button color="warning">
-						<a routerLink="/register">Inscription</a>
-					</button>
-				</div>
-			</form>
+<div class="container-fluid" style="background-image: linear-gradient(to top right,#6b4d57, #896a67);">
+<div class="row" style="margin: auto;"><span></span>
+</div>
+<div class="row" style="margin: auto;">
+	<mat-card class="row" style="margin: auto;">
+		<mat-card-content class="div-login" style="margin: auto;">
+			<mat-tab-group>
+				<mat-tab label="Connexion">
+					<form class="container-fluid" role="form" style="margin: auto;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
+						<div class="row">
+							<mat-form-field class="col-12">
+								<mat-label>Login</mat-label>
+								<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field class="col-12">
+								<mat-label>Mot de passe</mat-label>
+								<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
+								<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">								
+									<img class='imgMenu' *ngIf ='hide' src="../../assets/eye.svg" style="width: 90%;">
+									<img class='imgMenu' *ngIf ='!hide' src="../../assets/eye_off.svg" style="width: 90%;">
+								</button>
+							</mat-form-field>
+						</div>		
+						<div class="row" style="justify-content: center;">
+							<button type="submit" mat-raised-button color="warn">Connexion</button>
+						</div>
+					</form>
+				</mat-tab>
+				<mat-tab label="Inscription">
+					<form class="container-fluid" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!registered">
+						<div class="row">
+							<mat-form-field class="col-12">
+								<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field class="col-6">
+								<mat-label>Mot de passe</mat-label>
+								<input type="password" matInput placeholder="5 caractères minimum" name="password" id="password" formControlName="password" required>
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<mat-label>Vérifier le mot de passe</mat-label>
+								<input type="password" matInput placeholder="5 caractères minimum" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword" required>
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field class="col-6">
+								<input type="lastName" matInput placeholder="Prénom" name="firstName" id="firstName" formControlName="firstName" required>
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<input type="firstName" matInput placeholder="Nom" name="lastName" id="lastName" formControlName="lastName" required>
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field class="col-12">
+								<input type="email" matInput placeholder="Adresse email" name="email" id="email" formControlName="email" required>
+							</mat-form-field>
+						</div>
+						<div class="row" style="justify-content: center;">
+							<button type="submit" mat-raised-button color="warn">Inscription</button>
+						</div>
+						<div *ngIf="registered" style="text-align:center">
+							<p>Le compte a été créé avec succès. Un email d'activation a été envoyé à l'adresse soumise.</p>
+							<p>Si celui-ci n'a pas été reçu, cliquer ici pour le renvoyer.</p>
+						</div>
+					</form>
+				</mat-tab>
+			</mat-tab-group>
 		</mat-card-content>
 	</mat-card>
+</div>
+<div class="row" style="background-image: linear-gradient(to top right,#6b4d57, #896a67);"><span></span></div>
 </div>
