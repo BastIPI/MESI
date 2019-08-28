@@ -1,0 +1,7 @@
+id;title;description;category_id;user_id;date_created;date_edited;active;container_css_base;container_css_to_find;split
+1;game1;"Description du jeu 1";1;1;"2019-08-28 13:00:00";;true;" ";" ";false
+2;game2;"Description du jeu 2";1;2;"2019-08-28 13:00:00";;true;" ";" ";false
+3;game3;"Description du jeu 3";2;3;"2019-08-28 13:00:00";;true;" ";" ";false
+4;game4;"Description du jeu 4";2;1;"2019-08-28 13:00:00";;true;" ";" ";false
+5;game5;"Description du jeu 5";3;2;"2019-08-28 13:00:00";;true;" ";" ";false
+6;game6;"Description du jeu 6";3;3;"2019-08-28 13:00:00";;true;" ";" ";false

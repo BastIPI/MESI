@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from '../category/category.model';
 import { CategoryService } from '../category/category.service';
+import { LevelElement } from './level_element.model';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ElementImageService } from '../element_image/element_image.service';
+import { ElementImage } from '../element_image/element_image.model';
 
 @Component({
   selector: 'app-level-mechanic-form',
@@ -14,6 +18,9 @@ import { CategoryService } from '../category/category.service';
 })
 export class LevelMechanicFormComponent implements OnInit {
   categories: Category[];
+  quantity: number = 1;
+  elementImages: ElementImage[];
+  levelElement: LevelElement = new LevelElement();
   levelMechanic: LevelMechanic = new LevelMechanic();
   levelMechanicForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]]/*,
@@ -26,23 +33,49 @@ export class LevelMechanicFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private levelMechanicService: LevelMechanicService,
+    private elementImageService: ElementImageService,
     private route: ActivatedRoute,
     private router: Router,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.categoryService
       .getAll()
       .subscribe(
         (res: HttpResponse<Category[]>) => this.categories = res.body);
+    this.elementImageService
+      .getAll()
+      .subscribe(
+        (res: HttpResponse<ElementImage[]>) => this.elementImages = res.body,
+        (res: HttpResponse<any>) => console.log(res.body));
   }
 
-  private onSuccess(data, headers) {
-    this.levelMechanic = data;
+  openImageSelection(content) {
+    this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log("Closed with: " + result);
+    }, (reason) => {
+      console.log("Dismissed " + this.getDismissReason(reason));
+    });
   }
 
-  private onError(error) {
-    //this.alertService.error(error.error, error.message, null);
+  selectImage(ei: ElementImage) {
+    this.levelElement.elementImage = ei;
+  }
+
+  addLevelElement() {
+    this.levelMechanic.levelElements.push(this.levelElement);
+    this.levelElement = new LevelElement();
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }

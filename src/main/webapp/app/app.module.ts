@@ -11,6 +11,7 @@ import {
   MatIconModule, 
   MatToolbarModule,
   MatSelectModule, 
+  MatSliderModule,
   MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -40,7 +41,8 @@ const matModules = [
   MatToolbarModule,
   MatSelectModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatSliderModule
 ];
 
 @NgModule({

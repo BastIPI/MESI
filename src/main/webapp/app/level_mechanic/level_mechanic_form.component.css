@@ -1,8 +1,80 @@
 #cardForm {
-    width:60%;
+    width:75%;
     margin: 30px auto;
 }
 
 #buttonSubmit, #buttonPreview {
     float:right;
+}
+
+#containerBase {
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:2;
+}
+
+#containerResult {
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    background-color:#f2f2f2;
+}
+
+#containerCard {
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:99;
+}
+
+#description {
+    box-sizing: border-box; /* fit parent width */
+    height: 100%;
+}
+
+#cardFormContainer, #cardFormElements, #cardListElements {
+    margin:5px;
+    width:100%;
+}
+
+#cardListElements {
+    max-height: 300px;
+}
+
+
+#elementImageSelected {
+    width:80%;
+    margin:10px auto;
+}
+
+.elementImageCardName {
+    font-weight:bold;
+    text-align:center;
+}
+
+.elementImageCard {
+    width:200px;
+    margin:20px 10px;
+}
+
+.elementImageCard:hover {
+    background-color:#a8aaa7;
+}
+
+#containerElementImageCard {
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
 }

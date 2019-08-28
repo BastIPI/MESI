@@ -1,52 +1,142 @@
-<mat-card id="cardForm">
-	<h3>Créer un niveau</h3>
-	<form class="container-fluid" role="form" (ngSubmit)="save()" [formGroup]="levelMechanicForm">
-		<div class="row">
-			<mat-form-field class="col-12">
-				<input type="text" matInput placeholder="Titre" name="title" id="title" formControlName="title">
-			</mat-form-field>
-		</div>
-		<div class="row">
-			<mat-form-field class="col-12">
-				<input type="text" matInput placeholder="Description" name="description" id="description" formControlName="title">
-			</mat-form-field>
-		</div>
-		<div class="row">
-			<mat-form-field class="col-12">
-				<mat-label>Catégorie</mat-label>
-				<mat-select>
-					<mat-option *ngFor="let categorie of categories" [value]="categorie.id">
-					{{categorie.title}}
-					</mat-option>
-				</mat-select>
-			</mat-form-field>
-		</div>
-		<div class="row">
-			<mat-card class="col-12">
-				<mat-card-title>Elements du niveau</mat-card-title>
-				<mat-card-content>
-					<div class="row">
-						<mat-form-field class="col-6">
-							<input type="text" matInput placeholder="Nom de l'élément" name="elementName" id="elementName" formControlName="title">
-						</mat-form-field>
-						<mat-selection-list class="col-6" #elements>
-							<mat-list-option *ngFor="let element of levelMechanic.levelElements">
-								{{element.name}}
-							</mat-list-option>
-						</mat-selection-list>
-					</div>
-				</mat-card-content>
-			</mat-card>
+<div id="containerBase">
 
-		</div>
-		
-		cssBase: string;
-		cssToFind: string;
-		<div class="row">
-			<div class="col-12">
+</div>
+<div id="containerResult">
+
+</div>
+<div id="containerCard">
+	<mat-card id="cardForm">
+		<h3>Créer un niveau</h3>
+		<form class="container-fluid" role="form" (ngSubmit)="save()" [formGroup]="levelMechanicForm">
+			<div class="row">
+				<div class="col-6">
+					<div class="row">
+						<mat-form-field class="col-12">
+							<input type="text" matInput placeholder="Titre" name="title" id="title" formControlName="title">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-12">
+							<mat-label>Catégorie</mat-label>
+							<mat-select>
+								<mat-option *ngFor="let categorie of categories" [value]="categorie.id">
+									{{categorie.title}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="row">
+						<mat-form-field class="col-12">
+							<textarea type="text" matInput rows="3" placeholder="Description" name="description" id="description" formControlName="title"></textarea>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3">
+					<mat-card id="cardFormContainer">
+						<mat-card-title>Contenant</mat-card-title>
+						<mat-card-content>
+							<div class="row">
+								<mat-form-field class="col-12">
+									<textarea type="text" matInput rows="3" placeholder="CSS de base" name="description" id="cssContainerBase" formControlName="title"></textarea>
+								</mat-form-field>
+							</div>
+							<div class="row">
+								<mat-form-field class="col-12">
+									<textarea type="text" matInput rows="3" placeholder="CSS à trouver" name="description" id="cssContainerResult" formControlName="title"></textarea>
+								</mat-form-field>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+				<div class="col-5">
+					<mat-card id="cardFormElements">
+						<mat-card-title>Ajouter un élément</mat-card-title>
+						<mat-card-content>
+							<div class="row">
+								<div class="col-6">
+									<div class="row">
+										<mat-form-field class="col-12">
+											<input type="text" matInput placeholder="Nom de l'élément" name="elementName" id="elementName" [ngModelOptions]="{standalone: true}" [(ngModel)]="levelElement.name">
+										</mat-form-field>
+										<mat-form-field class="col-12">
+											<input matInput type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="quantity" placeholder="Quantité">
+										</mat-form-field>
+										<div class="col-12">
+											<div class="elementImageSelected" *ngIf="levelElement.elementImage">
+												<div class="elementImageCardName">{{ levelElement.elementImage.name }}</div>
+												<img [src]="'data:' + levelElement.elementImage.baseContentType + ';base64,' + levelElement.elementImage.base" style="width:50%" *ngIf="levelElement.elementImage.base"/>
+												<img [src]="'data:' + levelElement.elementImage.resultContentType + ';base64,' + levelElement.elementImage.result" style="width:50%" *ngIf="levelElement.elementImage.result"/>
+											</div>
+											<button type="button" mat-stroked-button style="width:100%" (click)="openImageSelection(modalImageSelection)">Sélectionner une image</button>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="row">
+										<mat-form-field class="col-12">
+											<textarea type="text" matInput rows="3" placeholder="CSS de base" name="cssElementBase" id="cssElementBase" [ngModelOptions]="{standalone: true}" [(ngModel)]="levelElement.cssBase"></textarea>
+										</mat-form-field>
+									</div>
+									<div class="row">
+										<mat-form-field class="col-12">
+											<textarea type="text" matInput rows="3" placeholder="CSS à trouver" name="cssElementResult" id="cssElementResult" [ngModelOptions]="{standalone: true}" [(ngModel)]="levelElement.cssToFind"></textarea>
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<button type="button" mat-stroked-button style="width:100%" (click)="addLevelElement()">Ajouter l'élément</button>
+								</div>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+				<div class="col-4">
+					<mat-card id="cardListElements">
+						<mat-card-title>Elements du niveau</mat-card-title>
+						<mat-card-content>
+							<div class="row">
+								<mat-selection-list class="col-12" #elements>
+									<mat-list-option *ngFor="let element of levelMechanic.levelElements">
+										{{element.name}}
+									</mat-list-option>
+								</mat-selection-list>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<button id="buttonPreview" type="submit" mat-stroked-button color="primary">Aperçu</button>
 					<button id="buttonSubmit" type="submit" mat-stroked-button color="primary">{{ levelMechanic.id == null ? 'Créer' : 'Modifier' }}</button>
+				</div>
 			</div>
-		</div>
-	</form>
-</mat-card>
+		</form>
+	</mat-card>
+</div>
+
+<ng-template #modalImageSelection let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Sélectionner une image</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+		<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body" id="containerElementImageCard">
+		<mat-card class="elementImageCard" *ngFor="let ei of elementImages" (click)="selectImage(ei);modal.close('image selected');">
+			<div class="elementImageCardName">{{ ei.name }}</div>
+			<img [src]="'data:' + ei.baseContentType + ';base64,' + ei.base" style="width:50%" *ngIf="ei.base"/>
+			<img [src]="'data:' + ei.resultContentType + ';base64,' + ei.result" style="width:50%" *ngIf="ei.result"/>
+		</mat-card>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Annuler')">Annuler</button>
+	</div>
+</ng-template>
