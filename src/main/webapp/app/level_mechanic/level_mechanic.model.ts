@@ -7,8 +7,8 @@ export class LevelMechanic {
     title: string;
     description: string;
     levelElements: LevelElement[];
-    cssBase: string;
-    cssToFind: string;
+    containerCssBase: string;
+    containerCssToFind: string;
     category?: Category;
     user?: User;
     dateCreated?: Date;
