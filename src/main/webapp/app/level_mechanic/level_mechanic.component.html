@@ -1,4 +1,23 @@
-<p>level works!</p>
-<div *ngFor="let level of levels">
-    Level #{{ level.id }}
+<div id="containerBase">
+	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementBase' + element.order" [className]="element.name">
+		<img [src]="'data:' + element.elementImage?.baseContentType + ';base64,' + element.elementImage.base" style="width:100%;" *ngIf="element.elementImage && element.elementImage.base"/>
+	</div>
+</div>
+<div id="containerToFind">
+	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementToFind' + element.order">
+		<img [src]="'data:' + element.elementImage?.resultContentType + ';base64,' + element.elementImage.result" style="width:100%;" *ngIf="element.elementImage && element.elementImage.result"/>
+	</div>
+</div>
+<div id="containerBack">
+	RETOUR
+</div>
+<div id="containerAnswer">
+	<mat-card id="formAnswer">
+		<div class="divAnswer" *ngIf="levelMechanic.containerCssToFind">
+			container
+		</div>
+		<div *ngFor="let element of levelMechanic.levelElements" class="divAnswer">
+			ok
+		</div>
+	</mat-card>
 </div>

@@ -15,12 +15,12 @@ import {
   MatListModule, 
   MatTabsModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './authentication/login.component';
 import { RegisterComponent } from './authentication/register.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
@@ -68,10 +68,10 @@ const matModules = [
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    AngularFontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
 	  ...matModules
   ],
   exports: [...matModules],

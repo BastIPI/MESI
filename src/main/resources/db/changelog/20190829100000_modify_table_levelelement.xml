@@ -7,21 +7,13 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 
-    <changeSet id="20190827090000-2" author="bastipi">
+    <changeSet id="20190829100000-1" author="bastipi">
         <addColumn tableName="level_element">
-            <column name="element_image_id" type="bigint"/>
-        </addColumn>
-        <addColumn tableName="level">
-            <column name="split" type="boolean" valueBoolean="false">
+            <column name="text" type="varchar(512)" />
+            <column name="order_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </addColumn>
-
-        <addForeignKeyConstraint baseColumnNames="element_image_id"
-                                 baseTableName="level_element"
-                                 constraintName="fk_level_element_element_image_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="element_image"/>
 	</changeSet>		
     
 </databaseChangeLog>

@@ -37,12 +37,8 @@
             <column name="level_container_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="css_base" type="varchar(512)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="css_to_find" type="varchar(512)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="css_base" type="varchar(512)" />
+            <column name="css_to_find" type="varchar(512)"/>
         </createTable>
 		
         <addForeignKeyConstraint baseColumnNames="level_id"

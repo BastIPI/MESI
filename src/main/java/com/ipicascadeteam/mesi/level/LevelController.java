@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class LevelController {
@@ -32,6 +34,23 @@ public class LevelController {
     @GetMapping("/level/{id}")
     Level getLevel(@PathVariable Long id) {
         return levelService.findById(id);
+    }
+
+    @GetMapping("/levels/mechanics/{id}")
+    LevelMechanic getLevelMechanic(@PathVariable Long id) {
+        return new LevelMechanic(levelService.findById(id));
+    }
+
+    /**
+     * {@code POST  /levels} : create a level.
+     *
+     * @param level : an object containing data from UI to create a level.
+     * 
+     */
+    @PostMapping("/levels")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Level create(@Valid @RequestBody Level level) {
+        return levelService.save(level);
     }
     
 }

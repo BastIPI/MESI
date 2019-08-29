@@ -6,4 +6,6 @@ export class LevelElement {
     cssBase: string;
     cssToFind: string;
     elementImage: ElementImage;
+    text: string;
+    order: number;
 }

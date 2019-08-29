@@ -55,7 +55,7 @@ public class Comment implements Serializable {
     @Column(name = "date_edited")
     private Instant dateEdited = null;
 
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", fetch=FetchType.EAGER)
     private Set<Comment> children;
 
     @Override

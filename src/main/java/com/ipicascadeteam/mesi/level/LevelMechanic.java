@@ -2,6 +2,7 @@ package com.ipicascadeteam.mesi.level;
 
 import java.util.Set;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class LevelMechanic {
@@ -14,6 +15,7 @@ public class LevelMechanic {
     this.levelElements = level.getLevelElements();
     this.containerCssBase = level.getContainerCssBase();
     this.containerCssToFind = level.getContainerCssToFind();
+    this.split = level.getSplit();
   }
 
   private Long id;
@@ -33,6 +35,9 @@ public class LevelMechanic {
 
   @Size(max = 512)
   private String containerCssToFind;
+
+  @NotNull
+  private Boolean split;
 
   public Long getId() {
     return id;
@@ -80,6 +85,14 @@ public class LevelMechanic {
 
   public void setContainerCssToFind(String containerCssToFind) {
     this.containerCssToFind = containerCssToFind;
+  }
+
+  public Boolean getSplit() {
+    return split;
+  }
+
+  public void setSplit(Boolean split) {
+    this.split = split;
   }
 
   

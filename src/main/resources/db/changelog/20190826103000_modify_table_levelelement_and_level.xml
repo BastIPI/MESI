@@ -38,12 +38,8 @@
         </addColumn>
 
         <addColumn tableName="level">
-            <column name="container_css_base" type="varchar(512)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="container_css_to_find" type="varchar(512)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="container_css_base" type="varchar(512)"/>
+            <column name="container_css_to_find" type="varchar(512)"/>
         </addColumn>
 
         <addForeignKeyConstraint baseColumnNames="level_id"

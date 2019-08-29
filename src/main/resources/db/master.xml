@@ -22,6 +22,7 @@
     <include file="db/changelog/20190826103000_modify_table_levelelement_and_level.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20190827090000_create_table_image_element.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20190827090000_modify_table_levelelement.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/20190829100000_modify_table_levelelement.xml" relativeToChangelogFile="false"/>
 	
     <include file="db/changelog/20190711103000_import_base_data.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20190827150000_import_data_category.xml" relativeToChangelogFile="false"/>

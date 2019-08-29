@@ -47,7 +47,7 @@ public class Level implements Serializable {
   private Set<LevelElement> levelElements;
   
   @Size(max = 512)
-  @Column(name = "container_css_base", length = 512, nullable = false)
+  @Column(name = "container_css_base", length = 512)
   private String containerCssBase;
 
   @Size(max = 512)
@@ -68,6 +68,12 @@ public class Level implements Serializable {
   @JsonIgnore
   @OneToMany(mappedBy = "level")
   private Set<Evaluation> evaluations;
+
+  @Column(name = "active", nullable = false)
+  private Boolean active;
+
+  @Column(name = "split", nullable = false)
+  private Boolean split;
 
   public Long getId() {
     return id;
@@ -163,6 +169,22 @@ public class Level implements Serializable {
 
   public void setContainerCssToFind(String containerCssToFind) {
     this.containerCssToFind = containerCssToFind;
+  }
+
+  public Boolean getActive() {
+    return active;
+  }
+
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
+
+  public Boolean getSplit() {
+    return split;
+  }
+
+  public void setSplit(Boolean split) {
+    this.split = split;
   }
   
 }

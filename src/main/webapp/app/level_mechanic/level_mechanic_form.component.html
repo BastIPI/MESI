@@ -1,24 +1,28 @@
-<div id="containerBase">
-
+<div id="containerToFind">
+	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementToFind' + element.order">
+		<img [src]="'data:' + element.elementImage?.resultContentType + ';base64,' + element.elementImage.result" style="width:100%;" *ngIf="element.elementImage && element.elementImage.result"/>
+	</div>
 </div>
-<div id="containerResult">
-
+<div id="containerBase">
+	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementBase' + element.order" [className]="element.name">
+		<img [src]="'data:' + element.elementImage?.baseContentType + ';base64,' + element.elementImage.base" style="width:100%;" *ngIf="element.elementImage && element.elementImage.base"/>
+	</div>
 </div>
 <div id="containerCard">
 	<mat-card id="cardForm">
 		<h3>Créer un niveau</h3>
-		<form class="container-fluid" role="form" (ngSubmit)="save()" [formGroup]="levelMechanicForm">
+		<form class="container-fluid" role="form" (ngSubmit)="save()">
 			<div class="row">
 				<div class="col-6">
 					<div class="row">
 						<mat-form-field class="col-12">
-							<input type="text" matInput placeholder="Titre" name="title" id="title" formControlName="title">
+							<input type="text" matInput placeholder="Titre" name="title" id="title" [(ngModel)]="levelMechanic.title">
 						</mat-form-field>
 					</div>
 					<div class="row">
 						<mat-form-field class="col-12">
 							<mat-label>Catégorie</mat-label>
-							<mat-select>
+							<mat-select name="categoryId" [(ngModel)]="categoryId">
 								<mat-option *ngFor="let categorie of categories" [value]="categorie.id">
 									{{categorie.title}}
 								</mat-option>
@@ -29,7 +33,7 @@
 				<div class="col-6">
 					<div class="row">
 						<mat-form-field class="col-12">
-							<textarea type="text" matInput rows="3" placeholder="Description" name="description" id="description" formControlName="title"></textarea>
+							<textarea type="text" matInput rows="3" placeholder="Description" name="description" id="description" [(ngModel)]="levelMechanic.description"></textarea>
 						</mat-form-field>
 					</div>
 				</div>
@@ -41,12 +45,12 @@
 						<mat-card-content>
 							<div class="row">
 								<mat-form-field class="col-12">
-									<textarea type="text" matInput rows="3" placeholder="CSS de base" name="description" id="cssContainerBase" formControlName="title"></textarea>
+									<textarea type="text" matInput rows="3" placeholder="CSS de base" name="containerCssBase" id="containerCssBase" (focusout)="draw('containerBase')" [(ngModel)]="levelMechanic.containerCssBase"></textarea>
 								</mat-form-field>
 							</div>
 							<div class="row">
 								<mat-form-field class="col-12">
-									<textarea type="text" matInput rows="3" placeholder="CSS à trouver" name="description" id="cssContainerResult" formControlName="title"></textarea>
+									<textarea type="text" matInput rows="3" placeholder="CSS à trouver" name="containerCssToFind" id="containerCssToFind" (focusout)="draw('containerToFind')" [(ngModel)]="levelMechanic.containerCssToFind"></textarea>
 								</mat-form-field>
 							</div>
 						</mat-card-content>
@@ -101,9 +105,21 @@
 					<mat-card id="cardListElements">
 						<mat-card-title>Elements du niveau</mat-card-title>
 						<mat-card-content>
+							<button class="buttonActions" id="buttonUp" (click)="elementsUp()" type="button" mat-stroked-button color="primary">
+								<fa-icon [icon]="faArrowUp"></fa-icon>
+								Monter
+							</button>
+							<button class="buttonActions" id="buttonDown" (click)="elementsDown()" type="button" mat-stroked-button color="primary">
+								<fa-icon [icon]="faArrowDown"></fa-icon>
+								Descendre
+							</button>
+							<button class="buttonActions" id="buttonDelete" (click)="elementsDelete()" type="button" mat-stroked-button color="primary">
+								<fa-icon [icon]="faTrash"></fa-icon>
+								Supprimer
+							</button>
 							<div class="row">
-								<mat-selection-list class="col-12" #elements>
-									<mat-list-option *ngFor="let element of levelMechanic.levelElements">
+								<mat-selection-list style="max-height:200px;overflow: auto" class="col-12" #elements>
+									<mat-list-option *ngFor="let element of levelMechanic.levelElements" [value]="element.order">
 										{{element.name}}
 									</mat-list-option>
 								</mat-selection-list>
@@ -114,7 +130,7 @@
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<button id="buttonPreview" type="submit" mat-stroked-button color="primary">Aperçu</button>
+					<button id="buttonPreview" type="button" mat-stroked-button color="primary">Aperçu</button>
 					<button id="buttonSubmit" type="submit" mat-stroked-button color="primary">{{ levelMechanic.id == null ? 'Créer' : 'Modifier' }}</button>
 				</div>
 			</div>

@@ -40,6 +40,12 @@ public class LevelElement implements Serializable{
     @Column(name = "css_to_find", length = 512)
     private String cssToFind;
 
+    @Column(name = "text", length = 512)
+    private String text;
+
+    @Column(name = "order_id", nullable = false)
+    private Long order;
+
     public Long getId() {
         return id;
     }

@@ -13,4 +13,6 @@ export class LevelMechanic {
     user?: User;
     dateCreated?: Date;
     dateEdited?: Date;
+    active?: boolean;
+    split: boolean;
 }

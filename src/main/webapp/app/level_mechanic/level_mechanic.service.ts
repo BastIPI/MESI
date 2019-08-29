@@ -8,13 +8,9 @@ import { LevelMechanic } from './level_mechanic.model';
 })
 export class LevelMechanicService {
 
-  public resourceUrl = 'http://localhost:8080/api/levelMechanics';
+  public resourceUrl = 'http://localhost:8080/api/levels';
 
   constructor(private http: HttpClient) { }
-
-  getAll(): Observable<HttpResponse<LevelMechanic[]>> {
-      return this.http.get<LevelMechanic[]>(this.resourceUrl, { observe: 'response' });
-  }
 
   create(levelMechanic: LevelMechanic): Observable<HttpResponse<LevelMechanic>> {
     return this.http.post<LevelMechanic>(this.resourceUrl, levelMechanic, { observe: 'response' });
@@ -24,8 +20,8 @@ export class LevelMechanicService {
     return this.http.put<LevelMechanic>(this.resourceUrl, levelMechanic, { observe: 'response' });
   }
 
-  find(id: number): Observable<HttpResponse<LevelMechanic>> {
-    return this.http.get<LevelMechanic>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  find(id: number): Observable<HttpResponse<LevelMechanic>> { 
+    return this.http.get<LevelMechanic>(`${this.resourceUrl}/mechanics/${id}`, { observe: 'response' });
   }
 
   /*query(req?: any): Observable<HttpResponse<User[]>> {
