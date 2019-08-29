@@ -5,6 +5,7 @@ import { LevelService } from '../level/level.service';
 import { Level } from '../level/level.model';
 import { CategoryService } from '../category/category.service';
 import { Category } from '../category/category.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService, 
     private levelService: LevelService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit() {
     this.levelService.getLevels().subscribe(result => {
@@ -35,6 +36,10 @@ export class HomeComponent implements OnInit {
       this.categories = result.body;
     });
   }
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+}
   filterCat(){
     return this.levels.filter(level => level.category.id == this.categorySelected || this.categorySelected == 0);
   }

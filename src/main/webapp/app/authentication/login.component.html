@@ -1,23 +1,24 @@
-<div class="container">
-	<div class="row" style="margin: auto;justify-content: center;">
-		<h1 style="font-family: 'Annie Use Your Telescope';font-size: 36px;">
-		   Bienvenue !
-		</h1>
-	</div>
-	<div class="row" style="margin: auto;">
-		<mat-card class="row" style="margin: auto;">
-			<mat-card-content class="div-login" style="margin: auto;">
+
+<div class="row">
+	<mat-card class='col-md-4 texte'>
+		<div class='title'> La guerre des moutons</div>
+		<div class='text'>
+				{{text}}
+		</div>
+	</mat-card>
+		<mat-card class="col-md-8 formu">
+			<mat-card-content class="div-login">
 				<mat-tab-group style="justify-content: center;">
 					<mat-tab label="Connexion">
-						<form class="container-fluid" role="form" style="margin: auto;" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
-							<div class="row">
-								<mat-form-field class="col-12">
+						<form class="container-fluid" role="form" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
+							<div class="">
+								<mat-form-field class="log">
 									<mat-label>Login</mat-label>
 									<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
 								</mat-form-field>
 							</div>
-							<div class="row">
-								<mat-form-field class="col-12">
+							<div class="">
+								<mat-form-field class="">
 									<mat-label>Mot de passe</mat-label>
 									<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
 									<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
@@ -25,16 +26,14 @@
 										<img class='imgMenu' *ngIf ='!hide' src="../../assets/eye_off.svg" style="width: 90%;">
 									</button>
 								</mat-form-field>
-							</div>		
-							<div class="row" style="justify-content: center;">
-								<button type="submit" mat-raised-button color="primary">Connexion</button>
 							</div>
+								<button class='boutons connection' type="submit" mat-raised-button color="primary">Connexion</button>
 						</form>
 					</mat-tab>
 					<mat-tab label="Inscription">
 						<form class="container-fluid" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!registered">
-							<div class="row">
-								<mat-form-field class="col-12">
+							<div class="">
+								<mat-form-field class="">
 									<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
 								</mat-form-field>
 							</div>
@@ -43,16 +42,16 @@
 									<mat-label>Mot de passe</mat-label>
 									<input type="password" matInput placeholder="5 caractères minimum" name="password" id="password" formControlName="password" required>
 									<button mat-icon-button matSuffix (click)="hide_pwd_register = !hide_pwd_register" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide_pwd_register">								
-										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye.svg" style="width: 90%;">
-										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye_off.svg" style="width: 90%;">
+										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye.svg">
+										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye_off.svg">
 									</button>
 								</mat-form-field>
 								<mat-form-field class="col-6">
 									<mat-label>Vérifier le mot de passe</mat-label>
 									<input type="password" matInput placeholder="5 caractères minimum" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword" required>
 									<button mat-icon-button matSuffix (click)="hide_pwd_register = !hide_pwd_register" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide_pwd_register">								
-										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye.svg" style="width: 90%;">
-										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye_off.svg" style="width: 90%;">
+										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye.svg">
+										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye_off.svg">
 									</button>
 								</mat-form-field>
 							</div>
@@ -64,15 +63,15 @@
 									<input type="firstName" matInput placeholder="Nom" name="lastName" id="lastName" formControlName="lastName" required>
 								</mat-form-field>
 							</div>
-							<div class="row">
-								<mat-form-field class="col-12">
+							<div class="">
+								<mat-form-field class="">
 									<input type="email" matInput placeholder="Adresse email" name="email" id="email" formControlName="email" required>
 								</mat-form-field>
 							</div>
-							<div class="row" style="justify-content: center;">
-								<button type="submit" mat-raised-button color="primary">Inscription</button>
+							<div class="">
+								<button class='boutons' type="submit" mat-raised-button color="primary">Inscription</button>
 							</div>
-							<div *ngIf="registered" style="text-align:center">
+							<div *ngIf="registered">
 								<p>Le compte a été créé avec succès. Un email d'activation a été envoyé à l'adresse soumise.</p>
 								<p>Si celui-ci n'a pas été reçu, cliquer ici pour le renvoyer.</p>
 							</div>
@@ -82,4 +81,3 @@
 			</mat-card-content>
 		</mat-card>
 	</div>
-</div>

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loggedUser: User;
   registered : boolean = false;
   hide : boolean = true;
+  text = 'orem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel erat et nulla semper hendrerit. Proin auctor malesuada euismod. Fusce pulvinar scelerisque turpis, id suscipit nunc convallis ut. Praesent faucibus vestibulum cursus. Nulla eget malesuada risus. Nam id fermentum nibh. Donec felis purus, maximus a iaculis et, euismod sodales massa. '
   hide_pwd_register : boolean = true;
   loginForm = this.fb.group({
     userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],

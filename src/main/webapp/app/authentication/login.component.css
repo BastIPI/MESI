@@ -4,3 +4,44 @@
     align-items: center;
     margin : auto;
 }
+mat-card{
+    width: 36%;
+    margin: auto;
+    min-height: 25em;
+    margin-top:35px;
+}
+
+.texte{
+    max-width: 30em;
+    margin-right:10px;
+}
+
+.formu{
+    max-width: 20em;
+    margin-left: 10px;
+}
+
+.title{
+    text-align: center;
+    margin-bottom:15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.log{
+    margin-top: 20px;
+}
+
+.boutons{
+    margin-left:9%;
+    margin-top:32px;
+    text-align: center;
+    width: 80%;
+    background-color: #ffcc99;
+    position: static;
+    color: rgb(48, 47, 47);
+}
+
+.boutons.connection{
+    margin-top:9em;
+}
