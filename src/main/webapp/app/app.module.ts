@@ -27,7 +27,6 @@ import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { LevelComponent } from './level/level.component';
-import { CommentComponent } from './comment/comment.component';
 import { CategoryComponent } from './category/category.component';
 import { LevelMechanicComponent } from './level_mechanic/level_mechanic.component';
 import { LevelMechanicFormComponent } from './level_mechanic/level_mechanic_form.component';
@@ -56,7 +55,6 @@ const matModules = [
 	  RegisterComponent,
 	  HomeComponent,
 	  LevelComponent,
-	  CommentComponent,
     CategoryComponent,
     LevelMechanicComponent,
     LevelMechanicFormComponent,
