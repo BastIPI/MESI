@@ -40,11 +40,44 @@
     width: 40px;
 }
 
-.description{
-    margin-left: 20px;
-}
 
 hr{
     background-color: rgb(128, 127, 127);
     width: 95%;
+}
+
+
+
+#cardDetail {
+    width:60%;
+    max-height:60%;
+    margin:auto;
+}
+
+#divComments {
+    width:100%;
+    overflow-y:auto;
+}
+
+#divComments h4 {
+    font-size: 18px;
+    text-align:center;    
+}
+
+.description{
+   width:100%;
+   overflow-y:auto;
+}
+
+.comment{
+    margin-left:20px;
+}
+
+.child{
+    margin-left: 60px;
+    font-size: 10px;
+}
+
+.message {
+    font-size:12px;
 }

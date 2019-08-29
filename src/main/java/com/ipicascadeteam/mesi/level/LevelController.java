@@ -31,9 +31,9 @@ public class LevelController {
         return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
     }
 
-    @GetMapping("/level/{id}")
-    Level getLevel(@PathVariable Long id) {
-        return levelService.findById(id);
+    @GetMapping("/levels/{id}")
+    LevelDto getLevel(@PathVariable Long id) {
+        return new LevelDto(levelService.findById(id));
     }
 
     @GetMapping("/levels/mechanics/{id}")

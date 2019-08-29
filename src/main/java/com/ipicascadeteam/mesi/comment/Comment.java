@@ -56,6 +56,7 @@ public class Comment implements Serializable {
     private Instant dateEdited = null;
 
     @OneToMany(mappedBy = "parent", fetch=FetchType.EAGER)
+    @OrderBy(value = "id ASC")
     private Set<Comment> children;
 
     @Override
@@ -127,5 +128,13 @@ public class Comment implements Serializable {
 
     public void setDateEdited(Instant dateEdited) {
         this.dateEdited = dateEdited;
+    }
+
+    public Set<Comment> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<Comment> children) {
+        this.children = children;
     }
 }

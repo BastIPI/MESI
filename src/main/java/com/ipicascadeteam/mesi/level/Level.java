@@ -62,7 +62,8 @@ public class Level implements Serializable {
   @Column(name = "date_edited", nullable = false)
   private Instant dateEdited;
 
-  @OneToMany(mappedBy = "level")
+  @OneToMany(mappedBy = "level", fetch=FetchType.EAGER)
+  @OrderBy(value = "id ASC")
   private Set<Comment> comments;
 
   @JsonIgnore

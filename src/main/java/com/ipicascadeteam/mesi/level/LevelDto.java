@@ -2,6 +2,7 @@ package com.ipicascadeteam.mesi.level;
 
 import java.time.Instant;
 import java.util.Set;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

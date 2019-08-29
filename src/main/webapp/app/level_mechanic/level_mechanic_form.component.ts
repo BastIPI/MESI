@@ -3,7 +3,6 @@ import { LevelMechanic } from './level_mechanic.model';
 import { HttpResponse } from '@angular/common/http';
 import { LevelMechanicService } from './level_mechanic.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from '../category/category.model';
 import { CategoryService } from '../category/category.service';
 import { LevelElement } from './level_element.model';
@@ -157,7 +156,7 @@ export class LevelMechanicFormComponent implements OnInit, AfterViewInit {
 
   drawElement(le : LevelElement) {
 
-    var elementDim = Math.floor(document.documentElement.clientHeight / 6);
+    var elementDim = Math.floor(document.documentElement.clientHeight / 5);
     var cssDefault = "width:" + elementDim + "px;height:" + elementDim + "px;";
     var cssBase = le.cssBase;
     var cssToFind = le.cssToFind;
@@ -184,7 +183,6 @@ export class LevelMechanicFormComponent implements OnInit, AfterViewInit {
       this.levelMechanic.user = this.authenticationService.currentUserValue;
     }
     this.levelMechanic.active = true;
-
     this.levelMechanicService
       .create(this.levelMechanic)
       .subscribe(response => console.log(response));

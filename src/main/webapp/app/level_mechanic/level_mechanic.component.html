@@ -1,23 +1,36 @@
-<div id="containerBase">
-	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementBase' + element.order" [className]="element.name">
-		<img [src]="'data:' + element.elementImage?.baseContentType + ';base64,' + element.elementImage.base" style="width:100%;" *ngIf="element.elementImage && element.elementImage.base"/>
-	</div>
-</div>
 <div id="containerToFind">
 	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementToFind' + element.order">
-		<img [src]="'data:' + element.elementImage?.resultContentType + ';base64,' + element.elementImage.result" style="width:100%;" *ngIf="element.elementImage && element.elementImage.result"/>
+		<img [src]="'data:' + element.elementImage.resultContentType + ';base64,' + element.elementImage.result" style="width:100%;" *ngIf="element.elementImage && element.elementImage.result"/>
+	</div>
+</div>
+<div id="containerBase">
+	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementBase' + element.order" [className]="element.name">
+		<img [src]="'data:' + element.elementImage.baseContentType + ';base64,' + element.elementImage.base" style="width:100%;" *ngIf="element.elementImage && element.elementImage.base"/>
 	</div>
 </div>
 <div id="containerBack">
-	RETOUR
+	<fa-icon [icon]="faArrowCircleLeft"></fa-icon>
 </div>
 <div id="containerAnswer">
-	<mat-card id="formAnswer">
-		<div class="divAnswer" *ngIf="levelMechanic.containerCssToFind">
-			container
-		</div>
-		<div *ngFor="let element of levelMechanic.levelElements" class="divAnswer">
-			ok
-		</div>
+	<mat-card id="cardAnswer">
+		<mat-card-header>Résolution :</mat-card-header>
+		<mat-card-content id="formAnswer">
+			<div class="divAnswer" *ngIf="containerCss && (levelMechanic.containerCssToFind || levelMechanic.containerCssBase)">
+				.{{ containerCss.name }} &#123;
+				<span class="listAnswer" *ngFor="let attr of containerCss.base">{{ attr + ";" }}</span>
+				<mat-form-field *ngFor="let attr of containerCss.toFind" class="textareaToFind">
+					<textarea matInput placeholder="Réponse" (change)="drawAnswer($event)" id="answerContainer"></textarea>
+				</mat-form-field>				
+				&#125;
+			</div>
+			<div *ngFor="let element of elementsCss" class="divAnswer">
+				.{{ element.name }} &#123;
+				<span class="listAnswer" *ngFor="let attr of element.base">{{ attr + ";" }}</span>
+				<mat-form-field *ngFor="let attr of element.toFind" class="textareaToFind">
+					<textarea matInput placeholder="Réponse" (change)="drawAnswer($event)" [id]="element.name"></textarea>
+				</mat-form-field>				
+				&#125;
+			</div>
+		</mat-card-content>
 	</mat-card>
 </div>

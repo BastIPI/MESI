@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ipicascadeteam.mesi.elementimage.ElementImage;
 
 /**
  * LevelElement
@@ -39,6 +40,10 @@ public class LevelElement implements Serializable{
     @Size(min = 1, max = 512)
     @Column(name = "css_to_find", length = 512)
     private String cssToFind;
+
+    @ManyToOne
+    @JoinColumn
+    private ElementImage elementImage;
 
     @Column(name = "text", length = 512)
     private String text;
@@ -84,5 +89,29 @@ public class LevelElement implements Serializable{
 
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Long getOrder() {
+        return order;
+    }
+
+    public void setOrder(Long order) {
+        this.order = order;
+    }
+
+    public ElementImage getElementImage() {
+        return elementImage;
+    }
+
+    public void setElementImage(ElementImage elementImage) {
+        this.elementImage = elementImage;
     }
 }

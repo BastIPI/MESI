@@ -25,14 +25,10 @@ export class HomeComponent implements OnInit {
     private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit() {
-    this.levelService.getLevels().subscribe(result => {
-      this.levels = result;
-    });
     this.levelService.getAll().subscribe(result => {
-      console.log(' level: ' + result);
+      this.levels = result.body;
     });
     this.categoryService.getAll().subscribe(result => {
-      console.log(' category ' + result);
       this.categories = result.body;
     });
   }
@@ -41,6 +37,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
 }
   filterCat(){
-    return this.levels.filter(level => level.category.id == this.categorySelected || this.categorySelected == 0);
+    if (this.levels) {
+      return this.levels.filter(level => level.category.id == this.categorySelected || this.categorySelected == 0);
+    }
   }
 }

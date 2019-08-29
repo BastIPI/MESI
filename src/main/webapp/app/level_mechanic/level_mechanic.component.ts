@@ -4,6 +4,14 @@ import { HttpResponse } from '@angular/common/http';
 import { LevelMechanicService } from './level_mechanic.service';
 import { ActivatedRoute } from '@angular/router';
 import { LevelElement } from './level_element.model';
+import { faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
+
+
+class CssObject {
+  name: string;
+  base: string[];
+  toFind: string[];
+}
 
 @Component({
   selector: 'app-level-mechanic',
@@ -12,6 +20,9 @@ import { LevelElement } from './level_element.model';
 })
 export class LevelMechanicComponent implements OnInit, AfterViewInit {
   levelMechanic: LevelMechanic = new LevelMechanic();
+  faArrowCircleLeft = faArrowCircleLeft;
+  containerCss : CssObject;
+  elementsCss: CssObject[];
 
   constructor(private levelMechanicService: LevelMechanicService, private route: ActivatedRoute) { }
 
@@ -25,7 +36,6 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.draw("all");
   }
 
   draw(target: string) {
@@ -51,14 +61,12 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
         this.draw("containerBase");
         this.draw("containerToFind");
         this.draw("elements");
-
         break;
     }
   }
 
   drawElement(le : LevelElement) {
-
-    var elementDim = Math.floor(document.documentElement.clientHeight / 6);
+    var elementDim = Math.floor(document.documentElement.clientHeight / 5);
     var cssDefault = "width:" + elementDim + "px;height:" + elementDim + "px;";
     var cssBase = le.cssBase;
     var cssToFind = le.cssToFind;
@@ -73,8 +81,40 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
     observer.observe(document, {attributes: false, childList: true, characterData: false, subtree:true});
   }
 
+  drawAnswer(event: any) {
+    if (event.target.id == 'answerContainer') {
+      this.draw('containerBase');
+      let cssTemp = document.getElementById("containerBase").style.cssText;
+      document.getElementById("containerBase").style.cssText = event.target.value + cssTemp;
+    } else {
+      for (const element of this.levelMechanic.levelElements) {
+        if (element.name == event.target.id) {
+          this.drawElement(element);
+        }
+      }
+      for (let em of Array.from(document.getElementsByClassName(event.target.id))) {
+        console.log(em);
+      }
+    }
+  }
+
   private onSuccess(data, headers) {
     this.levelMechanic = data;
+    this.draw("all");
+    this.containerCss = new CssObject;
+    this.containerCss.name = "conteneur";
+    this.containerCss.base = (this.levelMechanic.containerCssBase ? this.levelMechanic.containerCssBase.split(";").filter(attr => attr) : []);
+    this.containerCss.toFind = (this.levelMechanic.containerCssToFind ? this.levelMechanic.containerCssToFind.split(";").filter(attr => attr) : []);
+    this.elementsCss = [];
+    for (const le of this.levelMechanic.levelElements) {
+      if (!this.elementsCss.some(e => e.name == le.name) && (le.cssToFind || le.cssBase)) {
+        let eCss = new CssObject;
+        eCss.name = le.name;
+        eCss.base = (le.cssBase ? le.cssBase.split(";").filter(attr => attr) : []);
+        eCss.toFind = (le.cssToFind ? le.cssToFind.split(";").filter(attr => attr) : []);
+        this.elementsCss.push(eCss);
+      }
+    }
   }
 
   private onError(error) {

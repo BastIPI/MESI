@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Level } from './level.model';
 import { Category } from '../category/category.model';
+import { Comment } from '../comment/comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -110,7 +111,7 @@ export class LevelService {
   }
 
   find(id: number): Observable<HttpResponse<Level>> {
-    return this.http.get<Level>('http://localhost:8080/api/level/' + id, { observe: 'response' });
+    return this.http.get<Level>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   /*query(req?: any): Observable<HttpResponse<User[]>> {

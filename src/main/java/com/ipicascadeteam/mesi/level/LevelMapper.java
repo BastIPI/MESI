@@ -6,9 +6,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.ipicascadeteam.mesi.user.User;
-import com.ipicascadeteam.mesi.user.UserDto;
-
 @Service
 public class LevelMapper {
 
