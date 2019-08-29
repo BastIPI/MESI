@@ -6,12 +6,14 @@
         <img class='imgMenu' *ngIf ='menuExpended' src="../../assets/arrowUp.svg" >
         <img class='imgMenu' src="../../assets/user.svg">
         <div class='menu' *ngIf='menuExpended'>
-            <div (click)='logout()'>Déconnexion</div>
-            <div routerLink=''>Voir mon profil</div>
+            <div routerLink="/login" (click)="logout()">Déconnexion</div>
+            <div routerLink='/profil'>Voir mon profil</div>
+            <div routerLink='/link_url'>Liens utils</div>
         </div>
     </span>
 </div>
 <div class='category-content scroll'>
+    <div class="top">
     <div class='titre'>JEUX</div>
     <div class='dropdown'>
         <mat-form-field>
@@ -24,9 +26,11 @@
             </mat-select>
         </mat-form-field>
     </div>
+</div>
     <br/>
-    <div class="category-panel row" *ngFor="let level of filterCat()">
-        <div class="game title col-md-6">{{level.title}}</div>
+    <div class="category-panel" *ngFor="let level of filterCat()">
+        <div class='row'>
+        <div class="game title col-md-6" [routerLink]="['/detailLevel', level.id]">{{level.title}}</div>
         <div class='notes col-md-6'>
             <div class='game up'> 
                 <div>
@@ -44,6 +48,8 @@
                     <img class='share' src="../../assets/share.svg">
             </div>
         </div>
+    </div>
+        <div class="description">{{level.description}}</div>
         <hr>
     </div>
 </div>

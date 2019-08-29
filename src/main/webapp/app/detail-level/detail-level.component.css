@@ -1,0 +1,50 @@
+.game{
+    display: inline-block;
+}
+.titre{
+    margin-left: 20px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.titre.com{
+    margin-top:20px;
+    font-size: 18px;
+}
+
+.notes{
+    margin-left: 20px;
+}
+
+.commentaire{
+    margin-left:20px;
+}
+
+.enfant{
+    margin-left: 60px;
+    font-size: 10px;
+}
+
+.game.down{
+    margin-left: 20px;
+}
+
+.share{
+    margin-left:50px;
+    padding-bottom:30px;
+}
+.icon{
+    margin-right:50px;
+    padding-bottom:30px;
+    width: 40px;
+}
+
+.description{
+    margin-left: 20px;
+}
+
+hr{
+    background-color: rgb(128, 127, 127);
+    width: 95%;
+}

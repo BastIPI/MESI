@@ -110,7 +110,7 @@ export class LevelService {
   }
 
   find(id: number): Observable<HttpResponse<Level>> {
-    return this.http.get<Level>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http.get<Level>('http://localhost:8080/api/level/' + id, { observe: 'response' });
   }
 
   /*query(req?: any): Observable<HttpResponse<User[]>> {

@@ -5,8 +5,17 @@ export class Comment {
     id: number;
     user: User;
     children? : Comment[];
+    message: string;
     active: boolean;
     dateCreated: Date;
     dateEdited?: Date;
-    editedBy?: User;
+
+    constructor(d: any){
+        this.id = d.id;
+        this.user = d.user;
+        this.children = d.children;
+        this.message = d.message;
+        this.dateCreated = d.dateCreated;
+        this.dateEdited = d.dateEdited;
+    }
 }

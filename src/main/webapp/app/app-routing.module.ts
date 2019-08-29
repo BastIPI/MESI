@@ -10,6 +10,8 @@ import { LevelMechanicComponent } from './level_mechanic/level_mechanic.componen
 import { LevelMechanicFormComponent } from './level_mechanic/level_mechanic_form.component';
 import { ElementImageComponent } from './element_image/element_image.component';
 import { LinkUrlComponent } from './link-url/link-url.component';
+import { DetailLevelComponent } from './detail-level/detail-level.component';
+import { ProfilComponent } from './user/profil/profil.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -46,6 +48,22 @@ const routes: Routes = [
       canActivate: [AuthGuard]
   },
   { 
+    path: 'profil',
+    component: ProfilComponent,
+    data: {
+      authorities: ['ROLE_USER']
+    },
+    canActivate: [AuthGuard]
+},
+  { 
+    path: 'detailLevel/:id',
+    component: DetailLevelComponent,
+    data: {
+      authorities: ['ROLE_USER']
+    },
+    canActivate: [AuthGuard]
+},
+  { 
       path: 'elementimage',
       component: ElementImageComponent,
       data: {
@@ -53,9 +71,13 @@ const routes: Routes = [
       },
       canActivate: [AuthGuard]
   },
+  { path: 'link_url', component: LinkUrlComponent,
+  data: {
+    authorities: ['ROLE_ADMIN']
+  },
+  canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'link_url', component: LinkUrlComponent }
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({

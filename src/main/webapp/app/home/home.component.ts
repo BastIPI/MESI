@@ -26,10 +26,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.levelService.getLevels().subscribe(result => {
       this.levels = result;
-      console.log(this.levels);
+    });
+    this.levelService.getAll().subscribe(result => {
+      console.log(' level: ' + result);
     });
     this.categoryService.getAll().subscribe(result => {
-      console.log(result);
+      console.log(' category ' + result);
       this.categories = result.body;
     });
   }

@@ -1,0 +1,50 @@
+
+<!--tous les boutons d'avant, le bouton play et les commentaires en dessous -->
+
+<div class="titre">{{level.title}}</div>
+<hr>
+<div class='notes'>
+        <div  class='game play'>
+            <img class='icon' src="../../assets/play.svg">
+        </div>
+    <div class='game up'> 
+        <div>
+            <img class='pouce' src="../../assets/up.svg">
+        </div>
+        <div class='note'>{{level.evaluationPos}}</div>
+    </div>
+    <div class='game down'>
+        <div>
+            <img class='pouce' src="../../assets/down.svg">
+        </div>
+        <div class='note'>{{level.evaluationNeg}}</div>
+    </div>
+    <div class='game partage'>
+            <img class='share' src="../../assets/share.svg">
+    </div>
+</div>
+<div class="description">{{level.description}}</div>
+<div class='titre com'>commentaires:</div>
+<div class="commentaire" *ngFor='let comment of level.comments'>
+    <div class='message'>{{comment.message}}</div>
+    <span>Date de création: </span><span class='dateCreation'>{{comment.dateCreated| date: 'dd/MM/yyyy'}}</span>
+    <div class= 'auteur'>
+        <span>écrit par: </span>
+        <span>{{comment.user.firstName}}</span>
+        <span> à </span>
+        <span>{{comment.dateCreated| date:'HH:mm '}}</span>
+    </div>
+    <hr>
+    <div class='enfant' *ngFor='let child of comment.children'>
+            <div class='message'>{{child.message}}</div>
+            <span>Date de création: </span><span class='dateCreation'>{{child.dateCreated| date: 'dd/MM/yyyy'}}</span>
+            <div class= 'auteur'>
+                <span>écrit par: </span>
+                <span>{{child.user.firstName}}</span>
+                <span> à </span>
+                <span>{{comment.dateCreated| date:'HH:mm '}}</span>
+            </div>
+            <hr>
+    </div>
+</div>
+

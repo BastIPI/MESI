@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
     //console.log("first : " + this.registerForm.get(['firstName']).value);
     //console.log("last : " + this.registerForm.get(['lastName']).value);
     //console.log("email : " + this.registerForm.get(['email']).value);
-    const user = new User;
+    const user = new User();
     user.userName = this.registerForm.get(['userName']).value;
     user.password = this.registerForm.get(['password']).value;
     user.firstName = this.registerForm.get(['firstName']).value;

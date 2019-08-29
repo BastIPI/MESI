@@ -29,9 +29,8 @@
 
 .dropdown{
     float: left;
-    width: 100%;
-    z-index: 1000;
-    height: 35px;
+    height: 20px;
+    margin-left:20px;
 }
 
 .game{
@@ -44,6 +43,12 @@
 
 .share{
     padding-left:70px;
+    padding-bottom:30px;
+}
+
+hr{
+    background-color: rgb(128, 127, 127);
+    width: 30em;
 }
 
 .imgMenu{
@@ -66,6 +71,17 @@
     margin: 15px;
 }
 
+.notes.col-md-6{
+    max-height: 45px;
+}
+.game.title.col-md-6{
+    max-height: 45px;
+}
+
+.top{
+    margin-bottom:40px;
+}
+
 .jeu{
     margin-top:-55px;
 }
@@ -84,3 +100,8 @@
 .game.up, .game.down{
     text-align: center;
 }
+
+.description{
+    font-size:13px;
+}
+
