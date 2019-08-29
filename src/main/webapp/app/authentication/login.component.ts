@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loggedUser: User;
   registered : boolean = false;
   hide : boolean = true;
+  hide_pwd_register : boolean = true;
   loginForm = this.fb.group({
     userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
