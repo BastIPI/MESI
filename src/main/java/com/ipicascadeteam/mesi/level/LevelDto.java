@@ -1,6 +1,7 @@
 package com.ipicascadeteam.mesi.level;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 import com.ipicascadeteam.mesi.category.Category;
 import com.ipicascadeteam.mesi.comment.Comment;
+import com.ipicascadeteam.mesi.comment.CommentDto;
 import com.ipicascadeteam.mesi.user.UserDto;
 
 public class LevelDto {
@@ -21,7 +23,10 @@ public class LevelDto {
     this.user = new UserDto(level.getUser());
     this.dateCreated = level.getDateCreated();
     this.dateEdited = level.getDateEdited();
-    this.comments = level.getComments();
+    this.comments = new HashSet<CommentDto>();
+    for (Comment c : level.getComments()) {
+      this.comments.add(new CommentDto(c));
+    }
     this.evaluationPos = level.getEvaluations().stream().filter(eval -> eval.getType() == 1).count();
     this.evaluationNeg = level.getEvaluations().stream().filter(eval -> eval.getType() == 0).count();
   }
@@ -48,7 +53,7 @@ public class LevelDto {
   @NotNull
   private Instant dateEdited;
 
-  private Set<Comment> comments;
+  private Set<CommentDto> comments;
 
   private Long evaluationPos;
 
@@ -110,11 +115,11 @@ public class LevelDto {
     this.dateEdited = dateEdited;
   }
 
-  public Set<Comment> getComments() {
+  public Set<CommentDto> getComments() {
     return comments;
   }
 
-  public void setComments(Set<Comment> comments) {
+  public void setComments(Set<CommentDto> comments) {
     this.comments = comments;
   }
 

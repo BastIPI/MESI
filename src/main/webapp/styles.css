@@ -3,6 +3,14 @@
 
 body{
   background-image: linear-gradient(to bottom right, #557868, #70a18b);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+router-outlet {
+  width:100%;
+  height:100%;
 }

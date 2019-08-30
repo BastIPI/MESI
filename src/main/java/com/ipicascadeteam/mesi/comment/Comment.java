@@ -2,7 +2,6 @@ package com.ipicascadeteam.mesi.comment;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -30,8 +29,6 @@ public class Comment implements Serializable {
 
     @ManyToOne
     @JoinColumn
-    @NotNull
-    @JsonIgnore
     private Level level;
 
     @NotNull

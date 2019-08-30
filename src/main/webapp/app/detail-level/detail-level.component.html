@@ -1,56 +1,76 @@
 
-<!--tous les boutons d'avant, le bouton play et les commentaires en dessous -->
-<mat-card id="cardDetail">
-    <div class="row">
-        <div class="col-7">
-            <div class="titre">{{level.title}}</div>
-            <hr>
-            <div class='notes'>
-                <div  class='game play'>
-                    <img class='icon' src="../../assets/play.svg">
+<mat-card id="cardDetail" *ngIf="level">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-7" id="divDetail">
+                <div class="row">
+                    <div class="title col-12">{{level.title}}</div>
                 </div>
-                <div class='game up'> 
-                    <div>
-                        <img class='pouce' src="../../assets/up.svg">
+                <div class="row">
+                    <div class='notes'>
+                        <div class='launchLevel'>
+                            <img class='icon' src="../../assets/play.svg">
+                        </div>
+                        <div class='evaluation'> 
+                            <div>
+                                <img class='pouce' src="../../assets/up.svg">
+                            </div>
+                            <div class='note'>{{level.evaluationPos}}</div>
+                        </div>
+                        <div class='evaluation'>
+                            <div>
+                                <img class='pouce' src="../../assets/down.svg">
+                            </div>
+                            <div class='note'>{{level.evaluationNeg}}</div>
+                        </div>
+                        <div class='share'>
+                            <img class='share' src="../../assets/share.svg">
+                        </div>
                     </div>
-                    <div class='note'>{{level.evaluationPos}}</div>
                 </div>
-                <div class='game down'>
-                    <div>
-                        <img class='pouce' src="../../assets/down.svg">
-                    </div>
-                    <div class='note'>{{level.evaluationNeg}}</div>
-                </div>
-                <div class='game partage'>
-                        <img class='share' src="../../assets/share.svg">
+                <div class="row">
+                    <div class="description col-12">{{level.description}}</div>
                 </div>
             </div>
-            <div class="description">{{level.description}}</div>
-        </div>
-        <div class="col-5" id="divComments">
-            <h4>Commentaires</h4>
-            <div class="comment" *ngFor='let comment of level.comments'>
-                <div class="message">{{comment.message}}</div>
-                <span>Date de création: </span><span class='dateCreation'>{{comment.dateCreated| date: 'dd/MM/yyyy'}}</span>
-                <div class= 'auteur'>
-                    <span>écrit par: </span>
-                    <span>{{comment.user.firstName}}</span>
-                    <span> à </span>
-                    <span>{{comment.dateCreated| date:'HH:mm '}}</span>
-                </div>
-                <hr>
-                <div class="child" *ngFor='let child of comment.children'>
-                    <div class="message">{{child.message}}</div>
-                    <span>Date de création: </span><span class='dateCreation'>{{child.dateCreated| date: 'dd/MM/yyyy'}}</span>
-                    <div class= 'auteur'>
-                        <span>écrit par: </span>
-                        <span>{{child.user.firstName}}</span>
-                        <span> à </span>
-                        <span>{{comment.dateCreated| date:'HH:mm '}}</span>
+            <div class="col-5" id="divComments">
+                <h4>Commentaires</h4>
+                <form class="formComment" (submit)="saveComment($event, 0)" >
+                    <div class="divInputComment">
+                        <mat-form-field class="inputComment">
+                            <input matInput placeholder="Commenter">
+                        </mat-form-field>
                     </div>
-                    <hr>
+                    <button class='boutons buttonReply' type="submit" mat-stroked-button>Ok</button>
+                </form>
+                <div class="comment" *ngFor='let comment of level.comments'>
+
+                    <div>
+                        <span class="userName">{{comment.user.userName}}</span>
+                        <span class="dateCreated">le {{comment.dateCreated| date: 'dd/MM/yyyy'}} à {{comment.dateCreated| date:'HH:mm '}}</span>
+                    </div>
+                    <div class="message">{{comment.message}}</div>
+
+                    <div class="children" *ngIf="comment.children && comment.children.length > 0">Réponses :</div>
+                    <div class="child" *ngFor='let child of comment.children'>
+                        <div><span class="userName">{{child.user.userName}}</span><span class="dateCreated">le {{child.dateCreated| date: 'dd/MM/yyyy'}} à {{child.dateCreated| date:'HH:mm '}}</span></div>
+                        <div class="message">{{child.message}}</div>
+                    </div>
+
+                    <div>
+                        <a class="linkAnswer" (click)="collapsedAnswer = (collapsedAnswer == comment.id ? 0 : comment.id)">Répondre...</a>
+                        <div [ngbCollapse]="collapsedAnswer != comment.id">
+                            <form class="formComment" (submit)="saveComment($event, comment.id)">
+                                <div class="divInputComment">
+                                    <mat-form-field class="inputComment">
+                                        <input matInput placeholder="Commenter">
+                                    </mat-form-field>
+                                </div>
+                                <button class='boutons buttonReply' type="submit" mat-stroked-button>Ok</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </mat-card-content>
 </mat-card>

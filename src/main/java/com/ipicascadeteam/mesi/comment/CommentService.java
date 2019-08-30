@@ -2,7 +2,8 @@ package com.ipicascadeteam.mesi.comment;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.validation.Valid;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,19 +14,13 @@ import org.springframework.data.domain.Pageable;
 public class CommentService {
 
 	@Autowired
-    private CommentRepository commentRepository;
-    
-    @Transactional(readOnly = true)
-    public Page<Comment> getAllComments(Pageable pageable) {
-        return commentRepository.findAll(pageable);
-    }
+	private CommentRepository commentRepository;
+	
+	@Autowired
+    private CommentMapper commentMapper;
 
-	public Comment save(@Valid Comment comment) {
-		commentRepository.save(comment);
-		return comment;
-	}
-
-	public Comment findById(Long id) {
-		return commentRepository.findById(id).get();
+	public CommentDto save(CommentDto commentDto) {
+		Comment comment = commentRepository.save(commentMapper.commentDtoToComment(commentDto));
+		return new CommentDto(comment);
 	}
 }

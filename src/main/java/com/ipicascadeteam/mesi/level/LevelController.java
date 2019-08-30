@@ -18,17 +18,17 @@ public class LevelController {
 	@Autowired
     private LevelService levelService;
 
+    @Autowired
+    private LevelMapper levelMapper;
+
     /**
      * {@code GET /levels} : get all levels.
      *
-     * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body all levels.
      */
     @GetMapping("/levels")
-    public ResponseEntity<List<Level>> getAllLevels(Pageable pageable) {
-        final Page<Level> page = levelService.getAllLevels(pageable);
-        // HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
-        return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
+    public ResponseEntity<List<LevelDto>> getAllLevels() {
+        return new ResponseEntity<>(levelMapper.levelsToLevelDtos(levelService.getAllLevels()), HttpStatus.OK);
     }
 
     @GetMapping("/levels/{id}")

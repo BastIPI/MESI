@@ -3,6 +3,7 @@ package com.ipicascadeteam.mesi.level;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -22,8 +23,8 @@ public class LevelService {
     }
     
     @Transactional(readOnly = true)
-    public Page<Level> getAllLevels(Pageable pageable) {
-        return levelRepository.findAll(pageable);
+    public List<Level> getAllLevels() {
+        return levelRepository.findAll();
     }
 
 	public Level save(Level level) {
