@@ -1,9 +1,9 @@
 <mat-card id="cardForm" class="col-12">
     <h4>Ajouter une image</h4>
-    <form class="container-fluid" role="form" (ngSubmit)="save()" [formGroup]="elementImageForm">
+    <form class="container-fluid" role="form" (ngSubmit)="save()">
         <div class="row">
             <mat-form-field class="col-12">
-                <input type="text" matInput placeholder="Nom" name="name" id="name" formControlName="name">
+                <input type="text" matInput placeholder="Nom" name="name" id="name" [(ngModel)]="elementImage.name">
             </mat-form-field>
         </div>
         <div class="row">

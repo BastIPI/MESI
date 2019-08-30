@@ -15,7 +15,7 @@
             <column name="title" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(255)">
+            <column name="description" type="clob">
                 <constraints nullable="false"/>
             </column>
             <column name="category_id" type="bigint">

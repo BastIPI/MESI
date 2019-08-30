@@ -38,7 +38,6 @@ public class LevelDto {
   private String title;
 
   @NotBlank
-  @Size(min = 1, max = 255)
   private String description;
 
   @NotNull

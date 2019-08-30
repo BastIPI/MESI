@@ -41,12 +41,12 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
   draw(target: string) {
     switch (target) {
       case "containerBase":
-        let containerCssBaseDefault = "position:absolute;top:0;left:0;height:100%;z-index:1;" + (this.levelMechanic.split ? "width:100%;" : "background-color:#f2f3ae;width:50%;");
+        let containerCssBaseDefault = "position:absolute;top:0;left:0;height:100%;z-index:1;" + (this.levelMechanic.split ? "background-color:#eeeeee;width:50%;" : "width:100%;");
         document.getElementById("containerBase").style.cssText =
           (this.levelMechanic.containerCssBase ? this.levelMechanic.containerCssBase : "") + containerCssBaseDefault;
         break;
       case "containerToFind":
-        let containerCssToFindDefault = "background-color:#d58936;position:absolute;height:100%;z-index:1;top:0;" + (this.levelMechanic.split ? "right:0;width:50%;" : "left:0;width:100%;");
+        let containerCssToFindDefault = "background-color:#d7d9d9;position:absolute;height:100%;z-index:1;top:0;" + (this.levelMechanic.split ? "right:0;width:50%;" : "left:0;width:100%;");
         document.getElementById("containerToFind").style.cssText =
           (this.levelMechanic.containerCssBase ? this.levelMechanic.containerCssBase : "") +
           (this.levelMechanic.containerCssToFind ? this.levelMechanic.containerCssToFind : "") +
@@ -66,8 +66,8 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
   }
 
   drawElement(le : LevelElement) {
-    var elementDim = Math.floor(document.documentElement.clientHeight / 5);
-    var cssDefault = (le.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
+    var elementDim = Math.floor(document.documentElement.clientHeight / 4);
+    var cssDefault = "margin:15px;" + (le.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
     var cssBase = le.cssBase;
     var cssToFind = le.cssToFind;
 
@@ -90,8 +90,8 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
       for (const element of this.levelMechanic.levelElements) {
         if (element.name == event.target.id) {
 
-          var elementDim = Math.floor(document.documentElement.clientHeight / 5);
-          var cssDefault = (element.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
+          var elementDim = Math.floor(document.documentElement.clientHeight / 4);
+          var cssDefault = "margin:15px;" + (element.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
           var cssBase = element.cssBase;
           document.getElementById("elementBase" + element.order).style.cssText = event.target.value + cssDefault + cssBase;
         }

@@ -25,7 +25,6 @@ public class LevelMechanic {
   private String title;
 
   @NotBlank
-  @Size(min = 1, max = 255)
   private String description;
 
   private Set<LevelElement> levelElements;

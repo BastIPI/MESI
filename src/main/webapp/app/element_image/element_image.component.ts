@@ -13,22 +13,17 @@ import { HttpResponse } from '@angular/common/http';
 export class ElementImageComponent implements OnInit {
   elementImages: ElementImage[];
   elementImage: ElementImage = new ElementImage();
-  elementImageForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]]/*,
-    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-    confirmPassword: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-    firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]],
-    lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.pattern('^[_.@A-Za-z0-9-]*$')]]*/
-  });
 
   constructor(
-    private fb: FormBuilder,
     private elementImageService: ElementImageService,
     private route: ActivatedRoute,
     private router: Router) {}
 
   ngOnInit() {
+    this.loadElementImages();
+  }
+
+  loadElementImages() {
     this.elementImageService
       .getAll()
       .subscribe(
@@ -67,10 +62,10 @@ export class ElementImageComponent implements OnInit {
 
 
   save() {
-    this.elementImage.name = this.elementImageForm.get(['name']).value;
     this.elementImageService.create(this.elementImage).subscribe(
       response => {
-        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
+        this.loadElementImages();
+        this.elementImage = new ElementImage();
       },
       response => {
         console.log("Error : " + response);

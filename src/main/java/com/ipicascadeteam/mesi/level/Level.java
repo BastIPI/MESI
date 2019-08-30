@@ -29,8 +29,7 @@ public class Level implements Serializable {
   private String title;
 
   @NotNull
-  @Size(min = 1, max = 255)
-  @Column(name = "description", length = 255, nullable = false)
+  @Column(name = "description", nullable = false)
   private String description;
 
   @ManyToOne

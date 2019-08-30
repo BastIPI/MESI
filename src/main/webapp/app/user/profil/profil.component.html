@@ -1,7 +1,7 @@
 <div class='back' routerLink='/home'><fa-icon [icon]="iconBack"></fa-icon></div>
-<div class="row">
-    <mat-card class="div-login">		
-        <mat-card-content>	
+<div id="containerCard">
+<mat-card class="div-login">		
+    <mat-card-content>	
     <!--<mat-card-content class='category-content'>-->
         <div class='titre'>Mon profil</div>
         <div class='info'>
@@ -17,7 +17,7 @@
             <span class='email'>{{user.email}}</span>
         </div>
 
-        <button class='boutonChanger bouton' (click)='changeMdp()' *ngIf='!changerMdp'>Changer mon mot de passe</button>
+        <button class='boutonChanger bouton' mat-raised-button (click)='changeMdp()' *ngIf='!changerMdp'>Changer mon mot de passe</button>
 
         <div class='changementMdp' *ngIf='changerMdp'>
             <div class='title'>Modifiez votre mot de passe</div>
@@ -47,7 +47,7 @@
                     </mat-form-field>
                 </div>
             </div>
-            <button class='boutonValider bouton' (click)='ValiderChangeMdp()'>Valider</button>
+            <button class='boutonValider bouton' mat-raised-button (click)='ValiderChangeMdp()'>Valider</button>
         </div>
     </mat-card-content>
 </mat-card>
