@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-link-url',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./link-url.component.css']
 })
 export class LinkUrlComponent implements OnInit {
-
+  iconBack = faArrowCircleLeft;
   constructor() { }
 
   ngOnInit() {

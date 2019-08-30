@@ -26,6 +26,7 @@ mat-card{
     margin-bottom:15px;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 20px;
 }
 
 .log{
@@ -44,4 +45,8 @@ mat-card{
 
 .boutons.connection{
     margin-top:9em;
+}
+
+.imgMenu{
+    margin-left: 30%;
 }

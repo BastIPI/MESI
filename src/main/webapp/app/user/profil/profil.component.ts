@@ -4,6 +4,7 @@ import { User } from '../user.model';
 import { UserService } from '../user.service';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profil',
@@ -11,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+  iconBack = faArrowCircleLeft;
   user: User;
   changerMdp : boolean = false;
   newPassword: string;

@@ -1,17 +1,32 @@
+
+
 .div-login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin : auto;
-    background-color:#fcf7f8;
+    width: 40em;
 }
 
-mat-card {
-    width: auto;
-    margin: auto;
-    min-height: 20em;
-    margin-top: 35px;
+fa-icon{
+    font-size: 50px;
+    margin: 20px;
 }
+
+mat-card{
+    max-width: 30%;
+    margin: auto;
+    margin-top:28px;
+    min-height: 26em;
+}
+
+.div-login{
+    min-width: 49%;
+    margin-right: 15em;
+}
+
+.texte{
+    margin-left: 14.5em;
+    max-width: 13.5em;
+    max-height: 34.7em;
+}
+
 
 .log {
     margin-top: 20px;
@@ -34,17 +49,18 @@ container-fluid {
 }
 
 h3 {
-    margin: auto;
+    text-align: center;
     justify-content: center;
     font-family: 'Annie Use Your Telescope';
-    font-size: 36px;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 p {
     margin: auto;
     justify-content: center;
     font-family: 'Annie Use Your Telescope';
-    font-size: 24px;
 }
 
 a {

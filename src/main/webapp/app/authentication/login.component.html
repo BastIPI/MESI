@@ -5,6 +5,7 @@
 		<div class='text'>
 				{{text}}
 		</div>
+		<img class='imgMenu' src="../../assets/sheep.PNG">
 	</mat-card>
 		<mat-card class="col-md-8 formu">
 			<mat-card-content class="div-login">
@@ -21,9 +22,9 @@
 								<mat-form-field class="">
 									<mat-label>Mot de passe</mat-label>
 									<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
-									<button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
-										<img class='imgMenu' *ngIf ='!hide' src="../../assets/eye.svg" style="width: 90%;">
-										<img class='imgMenu' *ngIf ='hide' src="../../assets/eye_off.svg" style="width: 90%;">
+									<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
+										<img class='imgMenu' *ngIf ='hide' src="../../assets/eye.svg">
+										<img class='imgMenu' *ngIf ='!hide' src="../../assets/eye_off.svg">
 									</button>
 								</mat-form-field>
 							</div>

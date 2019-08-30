@@ -32,16 +32,36 @@
 }
 
 .bouton {    
-    margin-left: 9%;
     margin-top: 32px;
     text-align: center;
-    width: 80%;
     background-color: #ffcc99;
     position: static;
     color: rgb(48, 47, 47);
     cursor: pointer;
     padding-left:0px;
     margin-bottom: 10%;
+    text-transform: uppercase;
+    width:18em;
+    font-weight: bold;
+}
+
+fa-icon{
+    font-size: 50px;
+    margin: 20px;
+}
+
+.boutonChanger{
+    margin-top:13em;
+}
+
+.title{
+    font-weight: bold;
+    margin-top:20px;
+}
+
+.block{
+    margin-top:1em;
+
 }
 
 mat-card {
@@ -52,6 +72,6 @@ mat-card {
     justify-content: center;
     align-items: center;
     background-color:#fcf7f8;
-    min-height: 25em;
+    min-height: 26em;
     min-width: 20em;
 }

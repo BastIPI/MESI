@@ -8,6 +8,7 @@
     font-size: 20px;
     margin-bottom: 15px;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .notes {
@@ -23,6 +24,14 @@
 .launchLevel {
     flex-grow:1;
     padding:0 10px;
+}
+
+.boutons.buttonReply{
+    margin-top:10px;
+    margin-left: 10px;
+    text-align: center;
+    background-color: #ffcc99;
+    color: rgb(48, 47, 47);
 }
 
 .evaluation {
