@@ -1,11 +1,17 @@
 .category-content{
-    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    min-height: 20em;
+    margin : auto;
 }
 
 .titre{
     text-transform: uppercase;
     margin-bottom: 20px;
     font-weight: bold;
+    font-family: 'Annie Use Your Telescope';
+    font-size: 24px;
 }
 
 .label{
@@ -25,10 +31,27 @@
     height: 45px;
 }
 
-.bouton{
-    background-color: rgb(223, 221, 221);
-    border: none;
-    margin-top:15px;
+.bouton {    
+    margin-left: 9%;
+    margin-top: 32px;
+    text-align: center;
+    width: 80%;
+    background-color: #ffcc99;
+    position: static;
+    color: rgb(48, 47, 47);
     cursor: pointer;
     padding-left:0px;
+    margin-bottom: 10%;
+}
+
+mat-card {
+    width: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color:#fcf7f8;
+    min-height: 25em;
+    min-width: 20em;
 }

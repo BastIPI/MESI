@@ -1,48 +1,52 @@
-<div class='category-content'>
-<div class='titre'>Mon profl:</div>
-<div class='info'>
-    <span class='label'>Nom: </span>
-    <span class='nom'>{{user.lastName}}</span>
-</div>
-<div class='info'>
-    <span class='label'>Prenom: </span>
-    <span class='prenom'>{{user.firstName}}</span>
-</div>
-<div class='info'>
-    <span class='label'>Email:</span>
-    <span class='email'>{{user.email}}</span>
-</div>
-
-<button class='boutonChanger bouton' (click)='changeMdp()' *ngIf='!changerMdp'>Changer mon mot de passe</button>
-
-<div class='changementMdp' *ngIf='changerMdp'>
-    <div class='oldPassword'>
-        <div class="formulaire">
-            <mat-form-field>
-                <input matInput placeholder="ancien mot de passe" 
-                required 
-                type="password"
-                [(ngModel)]="oldPassword">
-            </mat-form-field>
+<div class="row">
+    <mat-card class="div-login">		
+        <mat-card-content>	
+    <!--<mat-card-content class='category-content'>-->
+        <div class='titre'>Mon profil</div>
+        <div class='info'>
+            <span class='label'>Nom : </span>
+            <span class='nom'>{{user.lastName}}</span>
         </div>
-            <div class="formulaire">
-            <mat-form-field>
-                <input matInput placeholder="nouveau mot de passe" 
-                required 
-                type="password"
-                [(ngModel)]="newPassword">
-            </mat-form-field>
+        <div class='info'>
+            <span class='label'>Prenom : </span>
+            <span class='prenom'>{{user.firstName}}</span>
         </div>
-            <div class="formulaire">
-            <mat-form-field>
-                <input matInput placeholder="Confirmation nouveau mot de passe" 
-                required 
-                type="password"
-                [(ngModel)]="confirmPassword">
-            </mat-form-field>
+        <div class='info'>
+            <span class='label'>Email :</span>
+            <span class='email'>{{user.email}}</span>
         </div>
-    </div>
-    <button class='boutonValider bouton' (click)='ValiderChangeMdp()'>Valider</button>
 
-</div>
+        <button class='boutonChanger bouton' (click)='changeMdp()' *ngIf='!changerMdp'>Changer mon mot de passe</button>
+
+        <div class='changementMdp' *ngIf='changerMdp'>
+            <div class='oldPassword'>
+                <div class="formulaire">
+                    <mat-form-field>
+                        <input matInput placeholder="ancien mot de passe" 
+                        required 
+                        type="password"
+                        [(ngModel)]="oldPassword">
+                    </mat-form-field>
+                </div>
+                    <div class="formulaire">
+                    <mat-form-field>
+                        <input matInput placeholder="nouveau mot de passe" 
+                        required 
+                        type="password"
+                        [(ngModel)]="newPassword">
+                    </mat-form-field>
+                </div>
+                    <div class="formulaire">
+                    <mat-form-field>
+                        <input matInput placeholder="Confirmation nouveau mot de passe" 
+                        required 
+                        type="password"
+                        [(ngModel)]="confirmPassword">
+                    </mat-form-field>
+                </div>
+            </div>
+            <button class='boutonValider bouton' (click)='ValiderChangeMdp()'>Valider</button>
+        </div>
+    </mat-card-content>
+</mat-card>
 </div>
