@@ -9,6 +9,8 @@ body{
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  font-family: 'Alegreya', serif;
+font-family: 'Alegreya Sans', sans-serif;
 }
 
 router-outlet {

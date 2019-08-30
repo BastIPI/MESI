@@ -27,6 +27,12 @@ mat-card{
     text-transform: uppercase;
     font-weight: bold;
     font-size: 20px;
+    font-family: 'Amatic SC', cursive;
+}
+
+.label{
+    font-family: 'Amatic SC', cursive;
+font-family: 'Ropa Sans', sans-serif;
 }
 
 .log{
@@ -41,6 +47,9 @@ mat-card{
     background-color: #ffcc99;
     position: static;
     color: rgb(48, 47, 47);
+    font-family: 'Amatic SC', cursive;
+font-family: 'Ropa Sans', sans-serif;
+text-transform: uppercase;
 }
 
 .boutons.connection{

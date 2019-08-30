@@ -50,8 +50,17 @@ mat-card {
     font-size: 11px;
 }
 
+.header.logo{
+    margin: 15px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Amatic SC', cursive;
+}
+
 .levelName {
     flex-grow: 1;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Ropa Sans', sans-serif;
 }
 
 .evaluationUp, .evaluationDown {
@@ -119,4 +128,8 @@ mat-card {
 #dropdownMenu {
     margin-top:-20px;
     padding:0;
+}
+h4{
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Ropa Sans', sans-serif;
 }

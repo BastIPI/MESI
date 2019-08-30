@@ -12,6 +12,12 @@
     font-weight: bold;
     font-family: 'Annie Use Your Telescope';
     font-size: 24px;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Ropa Sans', sans-serif;
+}
+
+.title{
+    margin-top: 15px;
 }
 
 .label{
@@ -43,6 +49,8 @@
     text-transform: uppercase;
     width:18em;
     font-weight: bold;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Ropa Sans', sans-serif;
 }
 
 fa-icon{
@@ -75,3 +83,4 @@ mat-card {
     min-height: 26em;
     min-width: 20em;
 }
+

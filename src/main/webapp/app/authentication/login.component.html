@@ -10,11 +10,11 @@
 		<mat-card class="col-md-8 formu">
 			<mat-card-content class="div-login">
 				<mat-tab-group style="justify-content: center;">
-					<mat-tab label="Connexion">
+					<mat-tab class="label" label="Connexion">
 						<form class="container-fluid" role="form" (ngSubmit)="login()" [formGroup]="loginForm" *ngIf="!registered">
 							<div class="">
 								<mat-form-field class="log">
-									<mat-label>Login</mat-label>
+									<mat-label >Login</mat-label>
 									<input matInput placeholder="Login" name="userName" id="userName" formControlName="userName" required>
 								</mat-form-field>
 							</div>
@@ -31,7 +31,7 @@
 								<button class='boutons connection' type="submit" mat-raised-button color="primary">Connexion</button>
 						</form>
 					</mat-tab>
-					<mat-tab label="Inscription">
+					<mat-tab class="label" label="Inscription">
 						<form class="container-fluid" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!registered">
 							<div class="">
 								<mat-form-field class="">

@@ -51,10 +51,16 @@ container-fluid {
 h3 {
     text-align: center;
     justify-content: center;
-    font-family: 'Annie Use Your Telescope';
     font-size: 23px;
     font-weight: bold;
     margin-bottom: 15px;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Ropa Sans', sans-serif;
+}
+
+h4{
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Ropa Sans', sans-serif;
 }
 
 p {
