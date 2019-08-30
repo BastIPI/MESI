@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LevelService } from '../level/level.service';
 import { Level } from '../level/level.model';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,8 @@ import { HttpResponse } from '@angular/common/http';
 import { Comment } from '../comment/comment.model'
 import { AuthenticationService } from '../authentication/authentication.service';
 import { CommentService } from '../comment/comment.service';
+import { EvaluationService } from '../evaluation/evaluation.service';
+import { Evaluation } from '../evaluation/evaluation.model';
 
 @Component({
   selector: 'app-detail-level',
@@ -16,15 +18,27 @@ export class DetailLevelComponent implements OnInit {
   level: Level;
   comments: Comment[];
   collapsedAnswer:number = 0;
-  
+  _selectedLevel: number
+
+  @Input()
+  set selectedLevel(selectedLevel: number) {
+    this._selectedLevel = selectedLevel;
+    if (this._selectedLevel && this._selectedLevel > 0) {
+      this.loadLevel(this._selectedLevel);
+    }
+  }
+
   constructor(
       private levelService: LevelService,
       private route: ActivatedRoute,
       private authenticationService: AuthenticationService,
-      private commentService : CommentService) { }
+      private commentService : CommentService,
+      private evaluationService : EvaluationService) { }
 
   ngOnInit() {
-    this.loadLevel(+this.route.snapshot.paramMap.get('id'));
+    if (this._selectedLevel && this._selectedLevel > 0) {
+      this.loadLevel(this._selectedLevel);
+    }
   }
 
   loadLevel(id:number) {
@@ -79,6 +93,20 @@ export class DetailLevelComponent implements OnInit {
       .subscribe(response => {
         this.loadLevel(this.level.id);
         this.collapsedAnswer = 0;
+      });
+  }
+
+  evaluate(type:number) {
+    let evaluation = new Evaluation();
+    evaluation.date = new Date();
+    evaluation.level = this.level;
+    evaluation.type = type;
+    evaluation.user = this.authenticationService.currentUserValue;
+
+    this.evaluationService
+      .create(evaluation)
+      .subscribe(response => {
+        this.loadLevel(this.level.id);
       });
   }
 }

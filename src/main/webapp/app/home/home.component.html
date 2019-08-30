@@ -1,4 +1,3 @@
-
 <div>
     <span class='header logo'> logo</span>
     <span class ='header profil' (click)='menuExpended = !menuExpended'>
@@ -12,44 +11,52 @@
         </div>
     </span>
 </div>
-<div class='category-content scroll'>
-    <div class="top">
-    <div class='titre'>JEUX</div>
-    <div class='dropdown'>
-        <mat-form-field>
-            <mat-label>Filtres: </mat-label>
-            <mat-select [(ngModel)]="categorySelected">
-                <mat-option value="0">Tout</mat-option>
-                <mat-option *ngFor="let category of categories" [value]="category.id">
-                    {{category.title}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-</div>
-    <br/>
-    <div class="category-panel" *ngFor="let level of filterCat()">
-        <div class='row'>
-        <div class="game title col-md-6" [routerLink]="['/detailLevel', level.id]">{{level.title}}</div>
-        <div class='notes col-md-6'>
-            <div class='game up'> 
-                <div>
-                    <img class='pouce' src="../../assets/up.svg">
-                </div>
-                <div class='note'>{{level.evaluationPos}}</div>
-            </div>
-            <div class='game down'>
-                <div>
-                    <img class='pouce' src="../../assets/down.svg">
-                </div>
-                <div class='note'>{{level.evaluationNeg}}</div>
-            </div>
-            <div class='game partage'>
-                    <img class='share' src="../../assets/share.svg">
-            </div>
+
+<div id="containerCard" class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class='col-12'><h4 id="title">Explorer les niveaux</h4></div>
+                    </div>
+                    <div class="row">
+                        <div class='col-12 dropdown'>
+                            <mat-form-field>
+                                <mat-label>Filtre par catégorie :</mat-label>
+                                <mat-select [(ngModel)]="categorySelected">
+                                    <mat-option value="0">Tout</mat-option>
+                                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                                        {{category.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 rowLevel" *ngFor="let level of filterCat()">
+                            <div class="levelName" (click)="selectedLevel = level.id">{{level.title}}</div>
+                            <div class='evaluationUp'> 
+                                <div>
+                                    <img class='pouce' src="../../assets/up.svg">
+                                </div>
+                                <div class='note'>{{level.evaluationPos}}</div>
+                            </div>
+                            <div class='evaluationDown'>
+                                <div>
+                                    <img class='pouce' src="../../assets/down.svg">
+                                </div>
+                                <div class='note'>{{level.evaluationNeg}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
         </div>
-    </div>
-        <div class="description">{{level.description}}</div>
-        <hr>
+        <div class="col-9">
+            <mat-card>
+                <app-detail-level [selectedLevel]="selectedLevel"></app-detail-level>
+            </mat-card>
+        </div>
     </div>
 </div>

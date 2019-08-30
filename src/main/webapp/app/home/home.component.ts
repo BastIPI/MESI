@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   level: Level;
   categories: Category[];
   categorySelected: number = 0;
+  selectedLevel: number = 0;
 
   constructor(private authenticationService: AuthenticationService, 
     private levelService: LevelService,
