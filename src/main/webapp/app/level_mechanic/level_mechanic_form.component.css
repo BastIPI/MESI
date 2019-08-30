@@ -74,3 +74,18 @@
 .buttonActions {
     width: 33%;
 }
+
+#containerBack {
+    position:absolute;
+    z-index:99;
+    top:10px;
+    left:30px;
+    opacity:0.3;
+    font-size:70px;
+    cursor: pointer;
+    color:#fafafa;
+}
+
+#containerBack:hover {
+    opacity:1;
+}

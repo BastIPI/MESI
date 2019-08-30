@@ -10,6 +10,9 @@
 		<span *ngIf="element.text && element.text != ''">{{element.text}}</span>
 	</div>
 </div>
+<div id="containerBack" [routerLink]="['/home', levelMechanic.id]">
+	<fa-icon [icon]="faArrowCircleLeft"></fa-icon>
+</div>
 <div id="containerCard">
 	<mat-card id="cardForm">
 		<h3>Créer un niveau</h3>

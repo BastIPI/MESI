@@ -2,7 +2,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body{
-  background-image: linear-gradient(to bottom right, #557868, #70a18b);
+  background-image: linear-gradient(-40deg, #517263 0%, #557868 20%, #79a390);
+  /*background: linear-gradient(-40deg,#428fd0 0%, #428fd0 0%,#8fb3da 100%);*/
   height: 100%;
   width: 100%;
   margin: 0;

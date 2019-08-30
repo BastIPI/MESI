@@ -10,16 +10,12 @@
                     <div class='launchLevel'>
                         <img class='icon' src="../../assets/play.svg" [routerLink]="['/levelmechanic', level.id]">
                     </div>
-                    <div class='evaluation' (click)="evaluate(1)"> 
-                        <div>
-                            <img class='pouce' src="../../assets/up.svg">
-                        </div>
+                    <div class='evaluation evaluationUp' (click)="evaluate(1)"> 
+                        <fa-icon [icon]="faThumbsUp"></fa-icon>
                         <div class='note'>{{level.evaluationPos}}</div>
                     </div>
-                    <div class='evaluation'(click)="evaluate(0)">
-                        <div>
-                            <img class='pouce' src="../../assets/down.svg">
-                        </div>
+                    <div class='evaluation evaluation evaluationDown'(click)="evaluate(0)">
+                        <fa-icon [icon]="faThumbsDown"></fa-icon>
                         <div class='note'>{{level.evaluationNeg}}</div>
                     </div>
                     <div class='share'>

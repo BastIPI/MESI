@@ -1,15 +1,12 @@
-<div>
-    <span class='header logo'> logo</span>
-    <span class ='header profil' (click)='menuExpended = !menuExpended'>
-        <img class='imgMenu' *ngIf ='!menuExpended' src="../../assets/arrowDown.svg" >
-        <img class='imgMenu' *ngIf ='menuExpended' src="../../assets/arrowUp.svg" >
-        <img class='imgMenu' src="../../assets/user.svg">
-        <div class='menu' *ngIf='menuExpended'>
-            <div routerLink="/login" (click)="logout()">Déconnexion</div>
-            <div routerLink='/profil'>Voir mon profil</div>
-            <div routerLink='/link_url'>Liens utiles</div>
-        </div>
-    </span>
+<div id="divMenu" (mouseover)="menuCollapse = false" (mouseout)="menuCollapse = true">
+    <div id="divUser">
+        <fa-icon [icon]="faUserNinja"></fa-icon>
+    </div>
+    <mat-card id="dropdownMenu" [ngbCollapse]="menuCollapse">
+        <div class="divItemMenu" routerLink="/login" (click)="logout()">Déconnexion</div>
+        <div class="divItemMenu" routerLink='/profil'>Voir mon profil</div>
+        <div class="divItemMenu" routerLink='/link_url'>Liens utiles</div>
+    </mat-card>
 </div>
 
 <div id="containerCard" class="container-fluid">
@@ -37,15 +34,11 @@
                         <div class="col-12 rowLevel" *ngFor="let level of filterCat()">
                             <div class="levelName" (click)="selectedLevel = level.id">{{level.title}}</div>
                             <div class='evaluationUp'> 
-                                <div>
-                                    <img class='pouce' src="../../assets/up.svg">
-                                </div>
+                                <fa-icon [icon]="faThumbsUp"></fa-icon>
                                 <div class='note'>{{level.evaluationPos}}</div>
                             </div>
                             <div class='evaluationDown'>
-                                <div>
-                                    <img class='pouce' src="../../assets/down.svg">
-                                </div>
+                                <fa-icon [icon]="faThumbsDown"></fa-icon>
                                 <div class='note'>{{level.evaluationNeg}}</div>
                             </div>
                         </div>

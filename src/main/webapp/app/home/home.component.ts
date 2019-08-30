@@ -6,7 +6,7 @@ import { Level } from '../level/level.model';
 import { CategoryService } from '../category/category.service';
 import { Category } from '../category/category.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faUserNinja, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
   categorySelected: number = 0;
   selectedLevel: number = 0;
   faPlusCircle=faPlusCircle;
+  faUserNinja=faUserNinja;
+  faThumbsUp = faThumbsUp;
+  faThumbsDown = faThumbsDown;
+  menuCollapse: boolean = true;
 
   constructor(private authenticationService: AuthenticationService, 
     private levelService: LevelService,

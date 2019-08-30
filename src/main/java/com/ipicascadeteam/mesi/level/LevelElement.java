@@ -45,7 +45,7 @@ public class LevelElement implements Serializable{
     @JoinColumn
     private ElementImage elementImage;
 
-    @Column(name = "text", length = 512)
+    @Column(name = "text")
     private String text;
 
     @Column(name = "order_id", nullable = false)

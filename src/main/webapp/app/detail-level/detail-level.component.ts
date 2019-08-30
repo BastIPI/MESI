@@ -8,6 +8,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 import { CommentService } from '../comment/comment.service';
 import { EvaluationService } from '../evaluation/evaluation.service';
 import { Evaluation } from '../evaluation/evaluation.model';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-detail-level',
@@ -18,7 +19,9 @@ export class DetailLevelComponent implements OnInit {
   level: Level;
   comments: Comment[];
   collapsedAnswer:number = 0;
-  _selectedLevel: number
+  _selectedLevel: number;
+  faThumbsUp = faThumbsUp;
+  faThumbsDown = faThumbsDown;
 
   @Input()
   set selectedLevel(selectedLevel: number) {
@@ -38,6 +41,8 @@ export class DetailLevelComponent implements OnInit {
   ngOnInit() {
     if (this._selectedLevel && this._selectedLevel > 0) {
       this.loadLevel(this._selectedLevel);
+    } else {
+      this.loadLevel(1);
     }
   }
 

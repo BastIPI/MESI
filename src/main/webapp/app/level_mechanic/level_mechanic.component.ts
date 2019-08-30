@@ -41,12 +41,12 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
   draw(target: string) {
     switch (target) {
       case "containerBase":
-        let containerCssBaseDefault = "position:absolute;top:0;left:0;height:100%;z-index:1;" + (this.levelMechanic.split ? "width:100%;" : "width:50%;");
+        let containerCssBaseDefault = "position:absolute;top:0;left:0;height:100%;z-index:1;" + (this.levelMechanic.split ? "width:100%;" : "background-color:#f2f3ae;width:50%;");
         document.getElementById("containerBase").style.cssText =
           (this.levelMechanic.containerCssBase ? this.levelMechanic.containerCssBase : "") + containerCssBaseDefault;
         break;
       case "containerToFind":
-        let containerCssToFindDefault = "background-color:#f2f2f2;position:absolute;height:100%;z-index:1;top:0;" + (this.levelMechanic.split ? "right:0;width:50%;" : "left:0;width:100%;");
+        let containerCssToFindDefault = "background-color:#d58936;position:absolute;height:100%;z-index:1;top:0;" + (this.levelMechanic.split ? "right:0;width:50%;" : "left:0;width:100%;");
         document.getElementById("containerToFind").style.cssText =
           (this.levelMechanic.containerCssBase ? this.levelMechanic.containerCssBase : "") +
           (this.levelMechanic.containerCssToFind ? this.levelMechanic.containerCssToFind : "") +

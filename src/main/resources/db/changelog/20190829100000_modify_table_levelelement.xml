@@ -9,7 +9,7 @@
 
     <changeSet id="20190829100000-1" author="bastipi">
         <addColumn tableName="level_element">
-            <column name="text" type="varchar(512)" />
+            <column name="text" type="clob" />
             <column name="order_id" type="bigint">
                 <constraints nullable="false"/>
             </column>

@@ -21,6 +21,19 @@
     cursor: pointer;
 }
 
+.evaluation {
+    font-size:18px;
+}
+
+.evaluationUp {
+    color: #577399;
+}
+
+.evaluationDown {
+    color: #ca3c25;
+}
+
+
 .launchLevel {
     flex-grow:1;
     padding:0 10px;
@@ -45,6 +58,7 @@
 .note {
     width:100%;
     text-align: center;
+    font-size:12px;
 }
 
 .icon{
