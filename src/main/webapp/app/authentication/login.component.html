@@ -21,9 +21,9 @@
 								<mat-form-field class="">
 									<mat-label>Mot de passe</mat-label>
 									<input [type]="hide ? 'password' : 'text'" matInput placeholder="Mot de passe" name="password" id="password" formControlName="password" required>
-									<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
-										<img class='imgMenu' *ngIf ='hide' src="../../assets/eye.svg" style="width: 90%;">
-										<img class='imgMenu' *ngIf ='!hide' src="../../assets/eye_off.svg" style="width: 90%;">
+									<button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide">
+										<img class='imgMenu' *ngIf ='!hide' src="../../assets/eye.svg" style="width: 90%;">
+										<img class='imgMenu' *ngIf ='hide' src="../../assets/eye_off.svg" style="width: 90%;">
 									</button>
 								</mat-form-field>
 							</div>
@@ -40,18 +40,18 @@
 							<div class="row">
 								<mat-form-field class="col-6">
 									<mat-label>Mot de passe</mat-label>
-									<input type="password" matInput placeholder="5 caractères minimum" name="password" id="password" formControlName="password" required>
-									<button mat-icon-button matSuffix (click)="hide_pwd_register = !hide_pwd_register" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide_pwd_register">								
-										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye.svg">
-										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye_off.svg">
+									<input [type]="hide_pwd_register ? 'password' : 'text'" matInput placeholder="5 caractères minimum" name="password" id="password" formControlName="password" required>
+									<button mat-icon-button matSuffix type="button" (click)="hide_pwd_register = !hide_pwd_register" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide_pwd_register">								
+										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye.svg">
+										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye_off.svg">
 									</button>
 								</mat-form-field>
 								<mat-form-field class="col-6">
 									<mat-label>Vérifier le mot de passe</mat-label>
-									<input type="password" matInput placeholder="5 caractères minimum" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword" required>
-									<button mat-icon-button matSuffix (click)="hide_pwd_register = !hide_pwd_register" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide_pwd_register">								
-										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye.svg">
-										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye_off.svg">
+									<input [type]="hide_pwd_register ? 'password' : 'text'" matInput placeholder="5 caractères minimum" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword" required>
+									<button mat-icon-button matSuffix type="button" (click)="hide_pwd_register = !hide_pwd_register" [attr.aria-label]="'Cacher mot de passe'" [attr.aria-pressed]="hide_pwd_register">								
+										<img class='imgMenu' *ngIf ='!hide_pwd_register' src="../../assets/eye.svg">
+										<img class='imgMenu' *ngIf ='hide_pwd_register' src="../../assets/eye_off.svg">
 									</button>
 								</mat-form-field>
 							</div>
