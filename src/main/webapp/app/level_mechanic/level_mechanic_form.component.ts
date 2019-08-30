@@ -71,6 +71,7 @@ export class LevelMechanicFormComponent implements OnInit, AfterViewInit {
 
   selectImage(ei: ElementImage) {
     this.levelElement.elementImage = ei;
+    this.levelElement.text = "";
   }
 
   addLevelElement() {
@@ -133,7 +134,7 @@ export class LevelMechanicFormComponent implements OnInit, AfterViewInit {
   draw(target: string) {
     switch (target) {
       case "containerBase":
-        let containerCssBaseDefault = "position:absolute;top:0;left:0;height:100%;z-index:1;" + (this.levelMechanic.split ? "width:100%;" : "width:50%;");
+        let containerCssBaseDefault = "position:absolute;top:0;left:0;height:100%;z-index:1;" + (this.levelMechanic.split ? "width:50%;" : "width:100%;");
         document.getElementById("containerBase").style.cssText =
           (this.levelMechanic.containerCssBase ? this.levelMechanic.containerCssBase : "") + containerCssBaseDefault;
         break;
@@ -157,7 +158,7 @@ export class LevelMechanicFormComponent implements OnInit, AfterViewInit {
   drawElement(le : LevelElement) {
 
     var elementDim = Math.floor(document.documentElement.clientHeight / 5);
-    var cssDefault = "width:" + elementDim + "px;height:" + elementDim + "px;";
+    var cssDefault = (le.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
     var cssBase = le.cssBase;
     var cssToFind = le.cssToFind;
 
@@ -185,6 +186,6 @@ export class LevelMechanicFormComponent implements OnInit, AfterViewInit {
     this.levelMechanic.active = true;
     this.levelMechanicService
       .create(this.levelMechanic)
-      .subscribe(response => console.log(response));
+      .subscribe(response => this.router.navigate(['/home', response.body.id]));
   }
 }

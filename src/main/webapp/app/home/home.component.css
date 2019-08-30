@@ -89,38 +89,10 @@ mat-card {
     margin-top:10%;
 }
 
-
-.share{
-    padding-left:70px;
-    padding-bottom:30px;
-}
-
-hr{
-    background-color: rgb(128, 127, 127);
-    width: 30em;
-}
-
-.imgMenu{
-    float: right;
-}
-
-.scroll{
-    overflow-y: scroll;
-}
-
-.titre{
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-top:15px;
-    margin-bottom:15px;
-}
-
-.top{
-    margin-bottom:40px;
-}
-
-.jeu{
-    margin-top:-55px;
+.rowAddLevel {
+    font-size:40px;
+    align-content: center;
+    justify-content: center;
 }
 
 .pouce{

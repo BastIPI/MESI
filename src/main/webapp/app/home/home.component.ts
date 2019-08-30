@@ -5,7 +5,8 @@ import { LevelService } from '../level/level.service';
 import { Level } from '../level/level.model';
 import { CategoryService } from '../category/category.service';
 import { Category } from '../category/category.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +21,18 @@ export class HomeComponent implements OnInit {
   categories: Category[];
   categorySelected: number = 0;
   selectedLevel: number = 0;
+  faPlusCircle=faPlusCircle;
 
   constructor(private authenticationService: AuthenticationService, 
     private levelService: LevelService,
-    private categoryService: CategoryService, private router: Router) { }
+    private categoryService: CategoryService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if(this.route.snapshot.paramMap.get('id')) {
+      this.selectedLevel = +this.route.snapshot.paramMap.get('id');
+    }
     this.levelService.getAll().subscribe(result => {
       this.levels = result.body;
     });

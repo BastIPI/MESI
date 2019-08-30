@@ -1,24 +1,26 @@
 <div id="containerToFind">
 	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementToFind' + element.order">
 		<img [src]="'data:' + element.elementImage.resultContentType + ';base64,' + element.elementImage.result" style="width:100%;" *ngIf="element.elementImage && element.elementImage.result"/>
+		<span *ngIf="element.text && element.text != ''">{{element.text}}</span>
 	</div>
 </div>
 <div id="containerBase">
 	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementBase' + element.order" [className]="element.name">
 		<img [src]="'data:' + element.elementImage.baseContentType + ';base64,' + element.elementImage.base" style="width:100%;" *ngIf="element.elementImage && element.elementImage.base"/>
+		<span *ngIf="element.text && element.text != ''">{{element.text}}</span>
 	</div>
 </div>
-<div id="containerBack">
+<div id="containerBack" [routerLink]="['/home', levelMechanic.id]">
 	<fa-icon [icon]="faArrowCircleLeft"></fa-icon>
 </div>
 <div id="containerAnswer">
 	<mat-card id="cardAnswer">
 		<mat-card-header>Résolution :</mat-card-header>
 		<mat-card-content id="formAnswer">
-			<div class="divAnswer" *ngIf="containerCss && (levelMechanic.containerCssToFind || levelMechanic.containerCssBase)">
+			<div class="divAnswer" *ngIf="containerCss && levelMechanic.containerCssBase">
 				.{{ containerCss.name }} &#123;
 				<span class="listAnswer" *ngFor="let attr of containerCss.base">{{ attr + ";" }}</span>
-				<mat-form-field *ngFor="let attr of containerCss.toFind" class="textareaToFind">
+				<mat-form-field *ngIf="containerCss.toFind && containerCss.toFind.length > 0" class="textareaToFind">
 					<textarea matInput placeholder="Réponse" (change)="drawAnswer($event)" id="answerContainer"></textarea>
 				</mat-form-field>				
 				&#125;
@@ -26,7 +28,7 @@
 			<div *ngFor="let element of elementsCss" class="divAnswer">
 				.{{ element.name }} &#123;
 				<span class="listAnswer" *ngFor="let attr of element.base">{{ attr + ";" }}</span>
-				<mat-form-field *ngFor="let attr of element.toFind" class="textareaToFind">
+				<mat-form-field *ngIf="element.toFind && element.toFind.length > 0" class="textareaToFind">
 					<textarea matInput placeholder="Réponse" (change)="drawAnswer($event)" [id]="element.name"></textarea>
 				</mat-form-field>				
 				&#125;

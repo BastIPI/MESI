@@ -1,11 +1,13 @@
 <div id="containerToFind">
 	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementToFind' + element.order">
 		<img [src]="'data:' + element.elementImage?.resultContentType + ';base64,' + element.elementImage.result" style="width:100%;" *ngIf="element.elementImage && element.elementImage.result"/>
+		<span *ngIf="element.text && element.text != ''">{{element.text}}</span>
 	</div>
 </div>
 <div id="containerBase">
 	<div *ngFor="let element of levelMechanic.levelElements" [id]="'elementBase' + element.order" [className]="element.name">
 		<img [src]="'data:' + element.elementImage?.baseContentType + ';base64,' + element.elementImage.base" style="width:100%;" *ngIf="element.elementImage && element.elementImage.base"/>
+		<span *ngIf="element.text && element.text != ''">{{element.text}}</span>
 	</div>
 </div>
 <div id="containerCard">
@@ -45,13 +47,18 @@
 						<mat-card-content>
 							<div class="row">
 								<mat-form-field class="col-12">
-									<textarea type="text" matInput rows="3" placeholder="CSS de base" name="containerCssBase" id="containerCssBase" (focusout)="draw('containerBase')" [(ngModel)]="levelMechanic.containerCssBase"></textarea>
+									<textarea type="text" matInput rows="3" placeholder="CSS de base" name="containerCssBase" id="containerCssBase" (focusout)="draw('containerBase');draw('containerToFind')" [(ngModel)]="levelMechanic.containerCssBase"></textarea>
 								</mat-form-field>
 							</div>
 							<div class="row">
 								<mat-form-field class="col-12">
 									<textarea type="text" matInput rows="3" placeholder="CSS à trouver" name="containerCssToFind" id="containerCssToFind" (focusout)="draw('containerToFind')" [(ngModel)]="levelMechanic.containerCssToFind"></textarea>
 								</mat-form-field>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<mat-checkbox name="split" [(ngModel)]="levelMechanic.split" (change)="draw('containerBase');draw('containerToFind');">Contenant divisé</mat-checkbox>
+								</div>
 							</div>
 						</mat-card-content>
 					</mat-card>
@@ -75,8 +82,14 @@
 												<img [src]="'data:' + levelElement.elementImage.baseContentType + ';base64,' + levelElement.elementImage.base" style="width:50%" *ngIf="levelElement.elementImage.base"/>
 												<img [src]="'data:' + levelElement.elementImage.resultContentType + ';base64,' + levelElement.elementImage.result" style="width:50%" *ngIf="levelElement.elementImage.result"/>
 											</div>
-											<button type="button" mat-stroked-button style="width:100%" (click)="openImageSelection(modalImageSelection)">Sélectionner une image</button>
-
+											<div class="elementTextSelected" *ngIf="levelElement.text && levelElement.text != ''">
+												// texte validé //
+											</div>
+										</div>
+										<div class="col-12">
+											<button *ngIf="!levelMechanic.split" type="button" mat-stroked-button style="width:100%" (click)="openImageSelection(modalImageSelection)">Choisir une image</button>
+											<button *ngIf="levelMechanic.split" type="button" mat-stroked-button style="width:50%" (click)="openImageSelection(modalImageSelection)">Image</button>
+											<button *ngIf="levelMechanic.split" type="button" mat-stroked-button style="width:50%" (click)="openImageSelection(modalTextSelection)">Texte</button>
 										</div>
 									</div>
 								</div>
@@ -130,7 +143,6 @@
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<button id="buttonPreview" type="button" mat-stroked-button color="primary">Aperçu</button>
 					<button id="buttonSubmit" type="submit" mat-stroked-button color="primary">{{ levelMechanic.id == null ? 'Créer' : 'Modifier' }}</button>
 				</div>
 			</div>
@@ -154,5 +166,21 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Annuler')">Annuler</button>
+	</div>
+</ng-template>
+
+<ng-template #modalTextSelection let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Ecrire un texte</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+		<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<textarea type="text" matInput rows="3" placeholder="Texte de l'élément" name="text" id="text"  [(ngModel)]="levelElement.text"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="levelElement.elementImage=null;modal.close('Valider')">Valider</button>
+		<button type="button" class="btn btn-outline-dark" (click)="levelElement.text='';modal.close('Annuler')">Annuler</button>
 	</div>
 </ng-template>

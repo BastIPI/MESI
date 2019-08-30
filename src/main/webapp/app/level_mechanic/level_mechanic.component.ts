@@ -67,7 +67,7 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
 
   drawElement(le : LevelElement) {
     var elementDim = Math.floor(document.documentElement.clientHeight / 5);
-    var cssDefault = "width:" + elementDim + "px;height:" + elementDim + "px;";
+    var cssDefault = (le.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
     var cssBase = le.cssBase;
     var cssToFind = le.cssToFind;
 
@@ -89,11 +89,12 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
     } else {
       for (const element of this.levelMechanic.levelElements) {
         if (element.name == event.target.id) {
-          this.drawElement(element);
+
+          var elementDim = Math.floor(document.documentElement.clientHeight / 5);
+          var cssDefault = (element.elementImage ? "width:" + elementDim + "px;height:" + elementDim + "px;" : "");
+          var cssBase = element.cssBase;
+          document.getElementById("elementBase" + element.order).style.cssText = event.target.value + cssDefault + cssBase;
         }
-      }
-      for (let em of Array.from(document.getElementsByClassName(event.target.id))) {
-        console.log(em);
       }
     }
   }
@@ -107,7 +108,7 @@ export class LevelMechanicComponent implements OnInit, AfterViewInit {
     this.containerCss.toFind = (this.levelMechanic.containerCssToFind ? this.levelMechanic.containerCssToFind.split(";").filter(attr => attr) : []);
     this.elementsCss = [];
     for (const le of this.levelMechanic.levelElements) {
-      if (!this.elementsCss.some(e => e.name == le.name) && (le.cssToFind || le.cssBase)) {
+      if (!this.elementsCss.some(e => e.name == le.name) && (le.cssToFind)) {
         let eCss = new CssObject;
         eCss.name = le.name;
         eCss.base = (le.cssBase ? le.cssBase.split(";").filter(attr => attr) : []);

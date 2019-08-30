@@ -33,11 +33,11 @@ public class LevelElement implements Serializable{
     @JsonIgnore
     private Level level;
 
-    @Size(min = 1, max = 512)
+    @Size(max = 512)
     @Column(name = "css_base", length = 512, nullable = false)
     private String cssBase;
 
-    @Size(min = 1, max = 512)
+    @Size(max = 512)
     @Column(name = "css_to_find", length = 512)
     private String cssToFind;
 

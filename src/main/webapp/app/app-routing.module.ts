@@ -24,6 +24,14 @@ const routes: Routes = [
       canActivate: [AuthGuard]
   },
   { 
+      path: 'home/:id',
+      component: HomeComponent,
+      data: {
+        authorities: ['ROLE_USER']
+      },
+      canActivate: [AuthGuard]
+  },
+  { 
       path: 'levelmechanic/:id',
       component: LevelMechanicComponent,
       data: {

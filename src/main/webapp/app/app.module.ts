@@ -13,7 +13,8 @@ import {
   MatSelectModule, 
   MatSliderModule,
   MatListModule, 
-  MatTabsModule} from '@angular/material';
+  MatTabsModule,
+  MatCheckboxModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -45,7 +46,8 @@ const matModules = [
   MatListModule,
   MatCardModule,
   MatSliderModule,
-  MatTabsModule
+  MatTabsModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

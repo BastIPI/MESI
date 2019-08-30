@@ -1,6 +1,11 @@
 #cardForm {
     width:75%;
     margin: 30px auto;
+    opacity: 0.1;
+}
+
+#cardForm:hover {
+    opacity: 1;
 }
 
 #buttonSubmit, #buttonPreview {
@@ -34,6 +39,12 @@
 #elementImageSelected {
     width:80%;
     margin:10px auto;
+}
+
+#elementTextSelected {
+    width:80%;
+    margin:10px auto;
+    text-align: center;
 }
 
 .elementImageCardName {
